@@ -6,20 +6,13 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-*: initial;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -31,23 +24,14 @@
 :root {
   --radius: 0.625rem;
   --background: hsl(0, 0%, 100%);
-  --foreground: hsl(0, 0%, 4%);
-  --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(0, 0%, 4%);
-  --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(0, 0%, 4%);
-  --primary: hsl(0, 0%, 9%);
-  --primary-foreground: hsl(0, 0%, 98%);
-  --secondary: hsl(0, 0%, 96%);
-  --secondary-foreground: hsl(0, 0%, 9%);
-  --muted: hsl(0, 0%, 96%);
-  --muted-foreground: hsl(0, 0%, 45%);
-  --accent: hsl(0, 0%, 96%);
-  --accent-foreground: hsl(0, 0%, 9%);
+  --foreground: hsl(330, 20%, 40%);
+  --primary: hsla(330, 81%, 60%, 1);
+  --primary-foreground: hsla(0, 0%, 100%, 1);
+  --secondary: hsla(223, 84%, 5%, 1);
+  --secondary-foreground: hsla(0, 0%, 100%, 0.8);
   --destructive: hsl(357, 100%, 45%);
-  --border: hsl(0, 0%, 90%);
-  --input: hsl(0, 0%, 90%);
-  --ring: hsl(0, 0%, 63%);
+  --border: hsla(327, 22%, 90%, 1);
+  --ring: hsla(330, 81%, 60%, 0.6);
 }
 
 @layer base {
