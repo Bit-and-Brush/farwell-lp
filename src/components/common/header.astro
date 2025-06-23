@@ -1,0 +1,41 @@
+---
+import { MailIcon, MenuIcon, PhoneIcon } from "lucide-react";
+import ButtonLink from "./button-link.astro";
+import Logo from "./logo.astro";
+import NavLinks from "./nav-links.astro";
+---
+
+<header class="fixed top-0 right-0 left-0 z-20 border-b shadow-sm">
+  <div class="container flex items-center justify-between py-4">
+    <Logo />
+    <nav class="hidden md:block">
+      <ul
+        class="animate-in slide-in-from-top fade-in *:hover:text-primary/70 text-secondary flex gap-8 text-sm leading-6 duration-[2s] *:delay-0 *:duration-300"
+      >
+        <NavLinks />
+      </ul>
+    </nav>
+    <div>
+      <div class="flex items-center gap-6 text-sm max-md:hidden">
+        <a
+          href="tel:+244 XXX XXX XXX"
+          class="flex items-center gap-2 leading-6 hover:underline max-xl:hidden"
+        >
+          <PhoneIcon size={16} />
+          <span>+244 XXX XXX XXX</span>
+        </a>
+        <a
+          href="mailto:info@farwell.co.ao"
+          class="flex items-center gap-2 leading-6 hover:underline max-xl:hidden"
+        >
+          <MailIcon size={16} />
+          <span>info@farwell.co.ao</span>
+        </a>
+        <ButtonLink href="/contact">Contacte-nos</ButtonLink>
+      </div>
+      <button class="text-secondary md:hidden">
+        <MenuIcon />
+      </button>
+    </div>
+  </div>
+</header>
