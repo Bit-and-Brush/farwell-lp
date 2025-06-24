@@ -1,6 +1,7 @@
 ---
 import Contacts from "@/components/common/contacts.astro";
 import SectionHeader from "@/components/common/section-header.astro";
+import ContactForm from "@/components/interactive/forms/contact-form";
 ---
 
 <section class="bg-grey-950/30">
@@ -9,7 +10,8 @@ import SectionHeader from "@/components/common/section-header.astro";
       title="Contacte-nos"
       description="Entre em contato com nossa equipe para atender a todas as suas necessidades de distribuição farmacêutica."
     />
-    <div class="grid gap-4 md:grid-cols-2">
+    <div class="grid gap-4 lg:grid-cols-2">
+      <ContactForm client:load />
       <Contacts />
     </div>
   </div>
