@@ -22,6 +22,7 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-grey-950: var(--grey-950);
 
   --font-sans: "Poppins", sans-serif;
 }
@@ -37,6 +38,7 @@
   --destructive: hsl(357, 100%, 45%);
   --border: hsla(327, 22%, 90%, 1);
   --ring: hsla(330, 81%, 60%, 0.6);
+  --grey-950: hsl(336, 20%, 95%);
 }
 
 @layer base {
