@@ -1,5 +1,6 @@
 ---
 import CardListItem from "@/components/common/card-list-item.astro";
+import SectionHeader from "@/components/common/section-header.astro";
 import {
   Building2Icon,
   CheckCircleIcon,
@@ -10,13 +11,10 @@ import {
 
 <section class="bg-grey-950/30">
   <div class="container space-y-16 py-20">
-    <div class="mx-auto max-w-3xl space-y-4 text-center">
-      <h2 class="text-secondary text-3xl font-bold">Sobre a FARWELL</h2>
-      <p class="text-lg">
-        Uma empresa líder em distribuição farmacêutica comprometida com a
-        excelência, a qualidade e a saúde das comunidades angolanas.
-      </p>
-    </div>
+    <SectionHeader
+      title="Sobre a FARWELL"
+      description="Uma empresa líder em distribuição farmacêutica comprometida com a excelência, a qualidade e a saúde das comunidades angolanas."
+    />
     <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
       <CardListItem
         description="Mais de 20 anos de operação sob a lei angolana, construindo confiança e confiabilidade no setor farmacêutico."
