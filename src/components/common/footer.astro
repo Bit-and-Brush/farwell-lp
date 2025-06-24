@@ -1,0 +1,50 @@
+---
+import { Heart } from "lucide-react";
+import Logo from "./logo.astro";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-secondary text-secondary-foreground py-12">
+  <div class="container mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+    <div class="space-y-4">
+      <Logo class="text-background" />
+      <p class="text-sm">
+        Mais de 20 anos de distribuição confiável de produtos farmacêuticos e
+        hospitalares em Angola.
+      </p>
+    </div>
+    <div>
+      <p class="text-background mb-4 font-bold">Serviços</p>
+      <ul class="space-y-2 text-sm">
+        <li>Produtos farmacêuticos</li>
+        <li>Equipamento hospitalar</li>
+        <li>Equipamentos médicos</li>
+        <li>Produtos Laboratoriais</li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-background mb-4 font-bold">Contactos</p>
+      <ul class="space-y-2 text-sm">
+        <li>Luanda, Angola</li>
+        <li>
+          <a class="hover:underline" href="tel:+244 XXX XXX XXX">
+            + 244 XXX XXX
+          </a>
+        </li>
+        <li>
+          <a class="hover:underline" href="mailto:info@farwell.co.ao">
+            info@farwell.co.ao
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    class="border-background/20 text-background/60 container flex items-center justify-center gap-1 border-t pt-8 text-center text-sm"
+  >
+    <p class="max-md:flex-1">© {year} FARWELL. Made with</p>
+    <Heart size={16} className="text-primary" />
+    <p class="max-md:flex-1">for Angola's healthcare</p>
+  </div>
+</footer>
