@@ -51,3 +51,11 @@
 main {
   margin-top: 73px;
 }
+
+.hero-gradient {
+  background: linear-gradient(
+    135deg,
+    rgba(236, 70, 153, 0.1) 0%,
+    rgba(236, 70, 153, 0.05) 100%
+  );
+}
