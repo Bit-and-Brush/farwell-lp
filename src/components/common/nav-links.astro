@@ -1,6 +1,15 @@
-<li class="text-primary"><a href="/">Home</a></li>
-<li><a href="/products">Produtos</a></li>
-<li><a href="/distribution">Distribuição</a></li>
-<li><a href="/services">Serviços</a></li>
-<li><a href="/about">Sobre nós</a></li>
-<li><a href="/contact">Contato</a></li>
+---
+const { pathname } = Astro.url;
+const links = {
+  "/": "Home",
+  "/about": "Sobre nós",
+};
+---
+
+{
+  Object.entries(links).map(([key, value]) => (
+    <li class={pathname === key ? "text-primary" : ""}>
+      <a href={key}>{value}</a>
+    </li>
+  ))
+}
