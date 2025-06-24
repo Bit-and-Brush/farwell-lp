@@ -1,0 +1,45 @@
+---
+import CardListItem from "@/components/common/card-list-item.astro";
+import SectionHeader from "@/components/common/section-header.astro";
+import {
+  Building2Icon,
+  CheckCircleIcon,
+  HeartIcon,
+  TruckIcon,
+} from "lucide-react";
+---
+
+<section class="bg-grey-950/30">
+  <div class="container space-y-16 py-20">
+    <SectionHeader
+      title="Porque Escolher a FARWELL?"
+      description="Décadas de experiência e um compromisso com a excelência."
+    />
+    <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      <CardListItem
+        description="Mais de 20 anos de operação sob a lei angolana, construindo confiança e confiabilidade no setor farmacêutico."
+        title="Excelência Estabelecida"
+      >
+        <Building2Icon size={48} slot="icon" className="text-primary" />
+      </CardListItem>
+      <CardListItem
+        description="Mais de 20 anos de operação sob a lei angolana, construindo confiança e confiabilidade no setor farmacêutico."
+        title="Excelência Estabelecida"
+      >
+        <HeartIcon size={48} slot="icon" className="text-primary" />
+      </CardListItem>
+      <CardListItem
+        description="Mais de 20 anos de operação sob a lei angolana, construindo confiança e confiabilidade no setor farmacêutico."
+        title="Excelência Estabelecida"
+      >
+        <TruckIcon size={48} slot="icon" className="text-primary" />
+      </CardListItem>
+      <CardListItem
+        description="Mais de 20 anos de operação sob a lei angolana, construindo confiança e confiabilidade no setor farmacêutico."
+        title="Excelência Estabelecida"
+      >
+        <CheckCircleIcon size={48} slot="icon" className="text-primary" />
+      </CardListItem>
+    </ul>
+  </div>
+</section>
