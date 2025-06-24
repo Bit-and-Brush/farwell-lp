@@ -1,0 +1,14 @@
+---
+type Props = {
+  metric: string;
+  label: string;
+};
+
+const { metric, label } = Astro.props;
+---
+
+<li class="flex flex-col items-center text-center">
+  <slot name="icon" />
+  <p class="text-secondary mt-4 mb-2 text-2xl leading-9 font-bold">{metric}</p>
+  <p class="text-sm">{label}</p>
+</li>
