@@ -1,0 +1,34 @@
+---
+import QualityStandardItem from "@/components/common/quality-standard-item.astro";
+import SectionHeader from "@/components/common/section-header.astro";
+import { ClockIcon } from "lucide-react";
+---
+
+<section class="bg-grey-950/30">
+  <div class="container space-y-16 py-20">
+    <SectionHeader
+      title="Porque Escolher os Nossos Serviços"
+      description="Mais de 20 anos de experiência em serviços farmacêuticos, com um compromisso com a excelência e a satisfação do cliente."
+    />
+    <ul class="grid gap-8 lg:grid-cols-3">
+      <QualityStandardItem
+        title="Rápido e Fiável"
+        description="Tempos de resposta rápidos e prestação de serviços fiável em todas as nossas soluções."
+      >
+        <ClockIcon className="text-primary" size={32} slot="icon" />
+      </QualityStandardItem>
+      <QualityStandardItem
+        title="Rápido e Fiável"
+        description="Tempos de resposta rápidos e prestação de serviços fiável em todas as nossas soluções."
+      >
+        <ClockIcon className="text-primary" size={32} slot="icon" />
+      </QualityStandardItem>
+      <QualityStandardItem
+        title="Rápido e Fiável"
+        description="Tempos de resposta rápidos e prestação de serviços fiável em todas as nossas soluções."
+      >
+        <ClockIcon className="text-primary" size={32} slot="icon" />
+      </QualityStandardItem>
+    </ul>
+  </div>
+</section>
