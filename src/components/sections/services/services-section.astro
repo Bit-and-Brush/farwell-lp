@@ -1,0 +1,26 @@
+---
+import ServiceItemDetails from "./service-item-details.astro";
+import ServiceKeyMetrics from "./service-key-metrics.astro";
+
+const fakeData = Array.from({ length: 4 });
+---
+
+<section class="container space-y-28 py-20">
+  {
+    fakeData.map((_, index) => (
+      <div class="grid items-center gap-12 lg:grid-cols-2 even:*:first:lg:order-2 even:*:last:lg:order-1">
+        <ServiceItemDetails
+          title={`Serviço ${index + 1}`}
+          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae."
+          bulletPoints={[
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae.",
+            "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, quae.",
+          ]}
+        />
+        <ServiceKeyMetrics />
+      </div>
+    ))
+  }
+</section>
