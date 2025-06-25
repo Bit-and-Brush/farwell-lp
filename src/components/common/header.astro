@@ -1,5 +1,5 @@
 ---
-import { MailIcon, MenuIcon, PhoneIcon } from "lucide-react";
+import { BookIcon, MenuIcon, UserIcon } from "lucide-react";
 import ButtonLink from "./button-link.astro";
 import Logo from "./logo.astro";
 import NavLinks from "./nav-links.astro";
@@ -10,7 +10,7 @@ import NavLinks from "./nav-links.astro";
 >
   <div class="container flex items-center justify-between py-4">
     <Logo />
-    <nav class="hidden md:block">
+    <nav class="hidden lg:block">
       <ul
         class="*:hover:text-primary/70 text-secondary flex gap-8 text-sm leading-6"
       >
@@ -18,24 +18,21 @@ import NavLinks from "./nav-links.astro";
       </ul>
     </nav>
     <div>
-      <div class="flex items-center gap-6 text-sm max-md:hidden">
-        <a
-          href="tel:+244 XXX XXX XXX"
-          class="flex items-center gap-2 leading-6 hover:underline max-xl:hidden"
+      <div class="flex items-center gap-6 text-sm max-lg:hidden">
+        <ButtonLink title="Ver Catálogo" href="#"
+          ><BookIcon />
+          <span class="max-xl:hidden">Ver Catálogo</span></ButtonLink
         >
-          <PhoneIcon size={16} />
-          <span>+244 XXX XXX XXX</span>
-        </a>
-        <a
-          href="mailto:info@farwell.co.ao"
-          class="flex items-center gap-2 leading-6 hover:underline max-xl:hidden"
+        <ButtonLink
+          title="Área de Clientes"
+          target="_blank"
+          href="https://my.farwell.co.ao/pt/"
         >
-          <MailIcon size={16} />
-          <span>info@farwell.co.ao</span>
-        </a>
-        <ButtonLink href="/contact">Contacte-nos</ButtonLink>
+          <UserIcon />
+          <span class="max-xl:hidden">Área de Clientes</span>
+        </ButtonLink>
       </div>
-      <button class="text-secondary md:hidden">
+      <button class="text-secondary lg:hidden">
         <MenuIcon />
       </button>
     </div>
