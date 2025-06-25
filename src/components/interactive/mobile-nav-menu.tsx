@@ -1,5 +1,6 @@
 import { MenuIcon, XIcon } from "lucide-react";
 import { useEffect, useRef, useState, type PropsWithChildren } from "react";
+import { Button } from "../ui/button";
 
 export default function MobileNavMenu({ children }: PropsWithChildren) {
   const sidebarRef = useRef<HTMLDivElement>(null);
@@ -59,6 +60,22 @@ export default function MobileNavMenu({ children }: PropsWithChildren) {
           <nav className="self-stretch lg:hidden">
             <ul className="flex flex-col gap-5 text-center">{children}</ul>
           </nav>
+          <div className="mx-auto flex w-full max-w-md items-center justify-center gap-2">
+            <Button asChild>
+              <a href="#" title="Ver Catálogo">
+                Ver Catálogo
+              </a>
+            </Button>
+            <Button>
+              <a
+                title="Área de Clientes"
+                target="_blank"
+                href="https://my.farwell.co.ao/pt/"
+              >
+                Área de Clientes
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </>
