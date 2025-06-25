@@ -1,5 +1,6 @@
 ---
-import { BookIcon, MenuIcon, UserIcon } from "lucide-react";
+import { BookIcon, UserIcon } from "lucide-react";
+import MobileNavMenu from "../interactive/mobile-nav-menu";
 import ButtonLink from "./button-link.astro";
 import Logo from "./logo.astro";
 import NavLinks from "./nav-links.astro";
@@ -9,7 +10,7 @@ import NavLinks from "./nav-links.astro";
   class="bg-background fixed top-0 right-0 left-0 z-20 border-b shadow-sm"
 >
   <div class="container flex items-center justify-between py-4">
-    <Logo />
+    <a href="/"> <Logo /></a>
     <nav class="hidden lg:block">
       <ul
         class="*:hover:text-primary/70 text-secondary flex gap-8 text-sm leading-6"
@@ -32,9 +33,9 @@ import NavLinks from "./nav-links.astro";
           <span class="max-xl:hidden">Área de Clientes</span>
         </ButtonLink>
       </div>
-      <button class="text-secondary lg:hidden">
-        <MenuIcon />
-      </button>
+      <MobileNavMenu client:visible>
+        <NavLinks />
+      </MobileNavMenu>
     </div>
   </div>
 </header>
