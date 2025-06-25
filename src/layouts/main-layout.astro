@@ -1,11 +1,29 @@
 ---
 import Footer from "@/components/common/footer.astro";
 import Header from "@/components/common/header.astro";
-import RootLayout from "./root-layout.astro";
+import ScrollToTopButton from "@/components/common/scroll-to-top-button.astro";
+import "@/styles/global.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/700.css";
+
+type Props = {
+  extendedTitle?: string;
+};
+
+const { extendedTitle = "We are here to do better" } = Astro.props;
 ---
 
-<RootLayout>
-  <Header />
-  <slot />
-  <Footer />
-</RootLayout>
+<!doctype html>
+<html lang="pt-AO">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Farwell - {extendedTitle}</title>
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+    <ScrollToTopButton />
+  </body>
+</html>
