@@ -1,0 +1,62 @@
+---
+import SectionHeader from "@/components/common/section-header.astro";
+import { PackageIcon } from "lucide-react";
+import DistributionServiceItem from "./distribution-service-item.astro";
+---
+
+<section class="container space-y-16 py-20">
+  <SectionHeader
+    title="Os Nossos Serviços de Distribuição"
+    description="Soluções completas de distribuição farmacêutica, concebidas para cumprir os mais elevados padrões de qualidade, segurança e conformidade regulamentar."
+  />
+  <ul class="grid gap-8 md:grid-cols-2">
+    <DistributionServiceItem
+      title="Gestão da Cadeia de Frio"
+      description="Armazenamento e transporte com controlo de temperatura para produtos farmacêuticos sensíveis."
+      bulletPoints={[
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+      ]}
+    >
+      <PackageIcon className="text-primary" size={24} slot="icon" />
+    </DistributionServiceItem>
+    <DistributionServiceItem
+      title="Gestão da Cadeia de Frio"
+      description="Armazenamento e transporte com controlo de temperatura para produtos farmacêuticos sensíveis."
+      bulletPoints={[
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+      ]}
+    >
+      <PackageIcon className="text-primary" size={24} slot="icon" />
+    </DistributionServiceItem>
+    <DistributionServiceItem
+      title="Gestão da Cadeia de Frio"
+      description="Armazenamento e transporte com controlo de temperatura para produtos farmacêuticos sensíveis."
+      bulletPoints={[
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+      ]}
+    >
+      <PackageIcon className="text-primary" size={24} slot="icon" />
+    </DistributionServiceItem>
+    <DistributionServiceItem
+      title="Gestão da Cadeia de Frio"
+      description="Armazenamento e transporte com controlo de temperatura para produtos farmacêuticos sensíveis."
+      bulletPoints={[
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+        "Monitorização de Temperatura",
+      ]}
+    >
+      <PackageIcon className="text-primary" size={24} slot="icon" />
+    </DistributionServiceItem>
+  </ul>
+</section>
