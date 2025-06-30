@@ -8,18 +8,18 @@ import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: add site url here
-  // site: "",
+  site: "https://farwell-lp.pages.dev",
   integrations: [sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],
     resolve: {
       // Use react-dom/server.edge instead of react-dom/server.browser for React 19.
       // Without this, MessageChannel from node:worker_threads needs to be polyfilled.
-      alias: process.env.NODE_ENV === "production"
-        ? { "react-dom/server": "react-dom/server.edge" }
-        : undefined,
-    }
+      alias:
+        process.env.NODE_ENV === "production"
+          ? { "react-dom/server": "react-dom/server.edge" }
+          : undefined,
+    },
   },
   output: "server",
   adapter: cloudflare({
