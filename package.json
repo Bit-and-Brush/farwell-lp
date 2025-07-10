@@ -5,12 +5,9 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "start": "npx wrangler dev",
-    "deploy": "npx wrangler deploy",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.6.0",
     "@astrojs/react": "^4.3.0",
     "@astrojs/sitemap": "^3.4.1",
     "@fontsource/poppins": "^5.2.6",
