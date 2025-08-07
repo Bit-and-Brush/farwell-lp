@@ -1,19 +1,49 @@
 ---
+import { getPageData } from "@/api";
+import type {
+  GetAboutPageDataResponse,
+  GetServicesPageDataResponse,
+} from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import KPISection from "@/components/sections/about/kpi-section.astro";
 import MissionAndVisionSection from "@/components/sections/about/mission-and-vision-section.astro";
 import WhyUsSection from "@/components/sections/about/why-us-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
+
+const [aboutPageData, servicesFooterList] = await Promise.all([
+  getPageData<GetAboutPageDataResponse>("about"),
+  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
+    _fields: "ourServices",
+  }),
+]);
+const { header, principles, whySection } = aboutPageData;
+const servicesNames =
+  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
 ---
 
-<MainLayout extendedTitle="Sobre a FARWELL">
+<MainLayout
+  extendedTitle="Sobre a FARWELL"
+  footer={{ services: servicesNames }}
+>
   <main>
-    <PageHero
-      title="Sobre a FARWELL"
-      subtitle="Uma empresa líder na distribuição farmacêutica, comprometida com a excelência, a qualidade e a saúde das comunidades angolanas."
-    />
+    <PageHero title={header.title} subtitle={header.description} />
     <MissionAndVisionSection />
-    <WhyUsSection />
+    {
+      whySection && (
+        <WhyUsSection
+          title={whySection.title}
+          keyPoints={whySection.keyValues.map(
+            ({ description, icon, title }) => ({
+              description,
+              title,
+              iconUrl: icon,
+            })
+          )}
+          description={whySection.description}
+        />
+      )
+    }
+    <!-- TODO: Missing API data -->
     <KPISection />
   </main>
 </MainLayout>

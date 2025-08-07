@@ -1,45 +1,33 @@
 ---
 import CardListItem from "@/components/common/card-list-item.astro";
 import SectionHeader from "@/components/common/section-header.astro";
-import {
-  Building2Icon,
-  CheckCircleIcon,
-  HeartIcon,
-  TruckIcon,
-} from "lucide-react";
+
+type Props = {
+  title: string;
+  description: string;
+  keyPoints: {
+    iconUrl?: string;
+    title: string;
+    description: string;
+  }[];
+};
+
+const { title, description, keyPoints } = Astro.props;
 ---
 
 <section class="bg-grey-950/30">
   <div class="container space-y-16 py-20">
-    <SectionHeader
-      title="Porque Escolher a FARWELL?"
-      description="Décadas de experiência e um compromisso com a excelência."
-    />
+    <SectionHeader title={title} description={description} />
     <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-      <CardListItem
-        description="Mais de 20 anos de operação sob a lei angolana, construindo confiança e confiabilidade no setor farmacêutico."
-        title="Excelência Estabelecida"
-      >
-        <Building2Icon size={48} slot="icon" className="text-primary" />
-      </CardListItem>
-      <CardListItem
-        description="Mais de 20 anos de operação sob a lei angolana, construindo confiança e confiabilidade no setor farmacêutico."
-        title="Excelência Estabelecida"
-      >
-        <HeartIcon size={48} slot="icon" className="text-primary" />
-      </CardListItem>
-      <CardListItem
-        description="Mais de 20 anos de operação sob a lei angolana, construindo confiança e confiabilidade no setor farmacêutico."
-        title="Excelência Estabelecida"
-      >
-        <TruckIcon size={48} slot="icon" className="text-primary" />
-      </CardListItem>
-      <CardListItem
-        description="Mais de 20 anos de operação sob a lei angolana, construindo confiança e confiabilidade no setor farmacêutico."
-        title="Excelência Estabelecida"
-      >
-        <CheckCircleIcon size={48} slot="icon" className="text-primary" />
-      </CardListItem>
+      {
+        keyPoints.map(({ description, title, iconUrl }) => (
+          <CardListItem
+            description={description}
+            iconUrl={iconUrl}
+            title={title}
+          />
+        ))
+      }
     </ul>
   </div>
 </section>

@@ -163,3 +163,22 @@ interface ContactDataService {
   description: string;
   contacts: ContactData[];
 }
+
+export interface GetAboutPageDataResponse {
+  header: HeaderData;
+  principles: {
+    title: string;
+    description: string;
+  }[];
+  whySection: WhySectionData;
+}
+
+interface WhySectionData {
+  title: string;
+  description: string;
+  keyValues: {
+    icon: string;
+    title: string;
+    description: string;
+  }[];
+}
