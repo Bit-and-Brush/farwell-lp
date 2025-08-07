@@ -1,19 +1,56 @@
 ---
+import { getPageData } from "@/api";
+import type { GetServicesPageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import GetStartedSection from "@/components/sections/services/get-started-section.astro";
 import ServicesSection from "@/components/sections/services/services-section.astro";
 import WhyOurServicesSection from "@/components/sections/services/why-our-services-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
+
+const servicesData = await getPageData<GetServicesPageDataResponse>("services");
+const { contact, header, ourServices, whyChooseOurServices } = servicesData;
 ---
 
 <MainLayout extendedTitle="Os Nossos Serviços">
   <main>
-    <PageHero
-      title="Os Nossos Serviços"
-      subtitle="Serviços farmacêuticos completos, concebidos para responder às diversas necessidades dos nossos clientes. Desde a entrega ao domicílio, passando por consultoria profissional até soluções de marketing direcionadas."
-    />
-    <ServicesSection />
-    <WhyOurServicesSection />
-    <GetStartedSection />
+    <PageHero title={header.title} subtitle={header.description} />
+    {
+      ourServices && (
+        <ServicesSection
+          services={ourServices.map(
+            ({
+              fields: { bulletPoints, description, icon, keyMetrics },
+              title,
+            }) => ({
+              bulletPoints: bulletPoints.map(({ description }) => description),
+              description,
+              keyMetrics: keyMetrics.map(({ description, title }) => ({
+                description,
+                title,
+              })),
+              title,
+              iconUrl: icon,
+            })
+          )}
+        />
+      )
+    }
+    {
+      whyChooseOurServices && (
+        <WhyOurServicesSection
+          title={whyChooseOurServices.title}
+          description={whyChooseOurServices.description}
+          keyPoints={whyChooseOurServices.keyPoints}
+        />
+      )
+    }
+    {
+      contact && (
+        <GetStartedSection
+          title={contact.title}
+          description={contact.description}
+        />
+      )
+    }
   </main>
 </MainLayout>

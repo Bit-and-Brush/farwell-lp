@@ -1,22 +1,31 @@
 ---
-import { TruckIcon } from "lucide-react";
+import { Image } from "astro:assets";
 
 type Props = {
   title: string;
   description: string;
+  iconUrl?: string;
   bulletPoints: string[];
 };
 
-const { title, description, bulletPoints } = Astro.props;
+const { title, description, bulletPoints, iconUrl } = Astro.props;
 ---
 
 <div class="space-y-6">
   <div class="flex items-center gap-4">
-    <div
-      class="bg-primary/10 flex size-12 items-center justify-center rounded-xl"
-    >
-      <TruckIcon className="text-primary" size={24} />
-    </div>
+    {
+      iconUrl && (
+        <div class="bg-primary/10 flex size-12 items-center justify-center rounded-xl">
+          <Image
+            src={iconUrl}
+            alt={title}
+            width={24}
+            height={24}
+            loading="lazy"
+          />
+        </div>
+      )
+    }
     <h3 class="text-secondary text-xl font-bold">{title}</h3>
   </div>
   <p class="text-sm leading-6">{description}</p>

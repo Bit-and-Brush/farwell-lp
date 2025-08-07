@@ -127,3 +127,38 @@ interface QualityAndComplianceStandardsData {
     description: string;
   }[];
 }
+
+export interface GetServicesPageDataResponse {
+  header: HeaderData;
+  ourServices: OurServiceData[];
+  whyChooseOurServices: WhyChooseOurServicesData;
+  contact: ContactDataService;
+}
+interface OurServiceData {
+  id: number;
+  title: string;
+  fields: ExtendedFieldData;
+}
+
+interface ExtendedFieldData {
+  icon: string;
+  description: string;
+  bulletPoints: { description: string }[];
+  keyMetrics: { title: string; description: string }[];
+}
+
+interface WhyChooseOurServicesData {
+  title: string;
+  description: string;
+  keyPoints: {
+    icon: string;
+    title: string;
+    description: string;
+  }[];
+}
+
+interface ContactDataService {
+  title: string;
+  description: string;
+  contacts: ContactData[];
+}

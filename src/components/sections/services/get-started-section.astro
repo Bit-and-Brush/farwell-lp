@@ -1,26 +1,44 @@
 ---
 import { MessageSquareIcon, PhoneIcon } from "lucide-react";
+
+type Props = {
+  title: string;
+  description: string;
+  phone?: string;
+  email?: string;
+};
+const { description, title, email, phone } = Astro.props;
 ---
 
 <section
   class="bg-primary/5 container my-20 space-y-4 py-12 text-center sm:rounded-xl"
 >
   <h3 class="text-secondary mx-auto max-w-3xl text-3xl leading-9 font-bold">
-    Pronto para Começar?
+    {title}
   </h3>
   <p class="mx-auto max-w-3xl">
-    Contacte-nos hoje para saber mais sobre os nossos serviços e como podemos
-    apoiar as suas necessidades farmacêuticas.
+    {description}
   </p>
   <div class="w-fit space-y-4 sm:mx-auto">
-    <a
-      class="flex items-center gap-2 hover:underline"
-      href="tel:+244 XXX XXX XXX"><PhoneIcon size={20} /> +244 XXX XXX XXX</a
-    >
-    <a
-      class="flex items-center gap-2 hover:underline"
-      href="mailto:info@farwell.co.ao"
-      ><MessageSquareIcon size={20} /> info@farwell.co.ao</a
-    >
+    {
+      phone && (
+        <a
+          class="flex items-center gap-2 hover:underline"
+          href={`tel:${phone}`}
+        >
+          <PhoneIcon size={20} /> +244 XXX XXX XXX
+        </a>
+      )
+    }
+    {
+      email && (
+        <a
+          class="flex items-center gap-2 hover:underline"
+          href={`mailto:${email}`}
+        >
+          <MessageSquareIcon size={20} /> info@farwell.co.ao
+        </a>
+      )
+    }
   </div>
 </section>
