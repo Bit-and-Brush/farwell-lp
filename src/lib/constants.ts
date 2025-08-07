@@ -1,0 +1,33 @@
+/** Website routes used for the navigation */
+export const ROUTES = [
+  {
+    text: "Apresentação",
+    children: [
+      { text: "Quem Somos", href: "/about" },
+      { text: "Missão, Visão e Valores", href: "/about#mission" },
+      // { text: "Politica da Qualidade", href: "/about" },
+      // { text: "A Nossa Equipa", href: "/about" },
+      // { text: "Instalações", href: "/about" },
+    ],
+  },
+  {
+    text: "Distribuição Farmacêutica",
+    href: "/distribution",
+  },
+  // {
+  //   text: "Diagnósticos",
+  //   href: "/diagnostics",
+  // },
+  {
+    text: "Serviços",
+    href: "/services",
+  },
+  {
+    text: "Produtos",
+    href: "/products",
+  },
+  {
+    text: "Contactos",
+    href: "/contact",
+  },
+];
