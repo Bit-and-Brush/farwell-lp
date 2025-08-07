@@ -1,23 +1,35 @@
 ---
 import { getPageData } from "@/api";
-import type { GetDistributionPageDataResponse } from "@/api/type";
+import type {
+  GetDistributionPageDataResponse,
+  GetServicesPageDataResponse,
+} from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import CoverageSection from "@/components/sections/distribution/coverage-section.astro";
 import DistributionServicesSection from "@/components/sections/distribution/distribution-services-section.astro";
 import QualityStandards from "@/components/sections/distribution/quality-standards.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const distributionData =
-  await getPageData<GetDistributionPageDataResponse>("distribution");
+const [distributionData, servicesFooterList] = await Promise.all([
+  getPageData<GetDistributionPageDataResponse>("distribution"),
+  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
+    _fields: "ourServices",
+  }),
+]);
 const {
   areaCoverage,
   header,
   ourDistributionServices,
   qualityAndComplianceStandards,
 } = distributionData;
+const servicesNames =
+  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
 ---
 
-<MainLayout extendedTitle="Distribuição Farmacêutica">
+<MainLayout
+  extendedTitle="Distribuição Farmacêutica"
+  footer={{ services: servicesNames }}
+>
   <main>
     <PageHero title={header.title} subtitle={header.description} />
     {

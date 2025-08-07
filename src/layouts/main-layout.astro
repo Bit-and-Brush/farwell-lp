@@ -45,7 +45,10 @@ const {
       clientAreaUrl={headerLinks?.clientArea}
     />
     <slot />
-    <Footer description={footer?.description} services={[]} />
+    <Footer
+      description={footer?.description}
+      services={footer?.services ?? []}
+    />
     <ScrollToTopButton />
   </body>
 </html>

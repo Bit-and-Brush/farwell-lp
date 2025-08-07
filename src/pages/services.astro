@@ -9,9 +9,13 @@ import MainLayout from "@/layouts/main-layout.astro";
 
 const servicesData = await getPageData<GetServicesPageDataResponse>("services");
 const { contact, header, ourServices, whyChooseOurServices } = servicesData;
+const servicesNames = ourServices.map(({ title }) => title);
 ---
 
-<MainLayout extendedTitle="Os Nossos Serviços">
+<MainLayout
+  extendedTitle="Os Nossos Serviços"
+  footer={{ services: servicesNames }}
+>
   <main>
     <PageHero title={header.title} subtitle={header.description} />
     {

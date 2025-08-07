@@ -134,6 +134,7 @@ export interface GetServicesPageDataResponse {
   whyChooseOurServices: WhyChooseOurServicesData;
   contact: ContactDataService;
 }
+
 interface OurServiceData {
   id: number;
   title: string;

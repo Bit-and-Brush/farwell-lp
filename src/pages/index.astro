@@ -1,17 +1,27 @@
 ---
 import { getPageData } from "@/api";
-import type { GetHomePageDataResponse } from "@/api/type";
+import type {
+  GetHomePageDataResponse,
+  GetServicesPageDataResponse,
+} from "@/api/type";
 import ContactSection from "@/components/common/contact-section.astro";
 import AboutSection from "@/components/sections/home/about-section.astro";
 import HomeHero from "@/components/sections/home/home-hero.astro";
 import ServicesSection from "@/components/sections/home/services-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const { aboutUs, contactUs, hero, ourServices } =
-  await getPageData<GetHomePageDataResponse>("home");
+const [homePageData, servicesFooterList] = await Promise.all([
+  getPageData<GetHomePageDataResponse>("home"),
+  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
+    _fields: "ourServices",
+  }),
+]);
+const { aboutUs, contactUs, hero, ourServices } = homePageData;
+const servicesNames =
+  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
 ---
 
-<MainLayout>
+<MainLayout footer={{ services: servicesNames }}>
   <main>
     {hero && <HomeHero {...hero} />}
     {aboutUs && <AboutSection {...aboutUs} />}

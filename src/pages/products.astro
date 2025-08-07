@@ -1,16 +1,29 @@
 ---
 import { getPageData } from "@/api";
-import type { GetProductPageDataResponse } from "@/api/type";
+import type {
+  GetProductPageDataResponse,
+  GetServicesPageDataResponse,
+} from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import ProductsSection from "@/components/sections/products/products-section.astro";
 import QualityAssuranceSection from "@/components/sections/products/quality-assurance-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const { header, qualityAssurance } =
-  await getPageData<GetProductPageDataResponse>("products");
+const [productsPageData, servicesFooterList] = await Promise.all([
+  getPageData<GetProductPageDataResponse>("products"),
+  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
+    _fields: "ourServices",
+  }),
+]);
+const { header, qualityAssurance } = productsPageData;
+const servicesNames =
+  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
 ---
 
-<MainLayout extendedTitle="Os Nossos Produtos">
+<MainLayout
+  extendedTitle="Os Nossos Produtos"
+  footer={{ services: servicesNames }}
+>
   <main>
     <PageHero title={header.title} subtitle={header.description} />
     <!-- TODO: Missing data for the API -->
