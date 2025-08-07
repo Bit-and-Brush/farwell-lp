@@ -91,3 +91,39 @@ export interface QualityAssuranceData {
     description: string;
   }[];
 }
+
+export interface GetDistributionPageDataResponse {
+  header: HeaderData;
+  ourDistributionServices: OurDistributionServicesData;
+  areaCoverage: AreaCoverageData;
+  qualityAndComplianceStandards: QualityAndComplianceStandardsData;
+}
+
+interface OurDistributionServicesData {
+  title: string;
+  description: string;
+  distributionServices: DistributionServiceData[];
+}
+
+interface DistributionServiceData {
+  id: number;
+  title: string;
+  fields: FieldsWithBulletPointsData;
+}
+
+interface AreaCoverageData {
+  title: string;
+  description: string;
+  coverageArea: { areaName: string }[];
+  distributionStats: { title: string; description: string }[];
+}
+
+interface QualityAndComplianceStandardsData {
+  title: string;
+  description: string;
+  keyValues: {
+    icon: string;
+    title: string;
+    description: string;
+  }[];
+}

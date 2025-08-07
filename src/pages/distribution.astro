@@ -1,19 +1,59 @@
 ---
+import { getPageData } from "@/api";
+import type { GetDistributionPageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import CoverageSection from "@/components/sections/distribution/coverage-section.astro";
 import DistributionServicesSection from "@/components/sections/distribution/distribution-services-section.astro";
 import QualityStandards from "@/components/sections/distribution/quality-standards.astro";
 import MainLayout from "@/layouts/main-layout.astro";
+
+const distributionData =
+  await getPageData<GetDistributionPageDataResponse>("distribution");
+const {
+  areaCoverage,
+  header,
+  ourDistributionServices,
+  qualityAndComplianceStandards,
+} = distributionData;
 ---
 
 <MainLayout extendedTitle="Distribuição Farmacêutica">
   <main>
-    <PageHero
-      title="Distribuição Farmacêutica"
-      subtitle="Serviços de distribuição profissional, garantindo a entrega segura, pontual e em conformidade de produtos farmacêuticos em toda Angola. Mais de 20 anos de experiência de confiança na área da distribuição."
-    />
-    <DistributionServicesSection />
-    <CoverageSection />
-    <QualityStandards />
+    <PageHero title={header.title} subtitle={header.description} />
+    {
+      ourDistributionServices && (
+        <DistributionServicesSection
+          title={ourDistributionServices.title}
+          description={ourDistributionServices.description}
+          services={ourDistributionServices.distributionServices.map(
+            ({ fields: { bulletPoints, description, icon }, title }) => ({
+              title,
+              iconUrl: icon,
+              description,
+              bulletPoints: bulletPoints.map(({ description }) => description),
+            })
+          )}
+        />
+      )
+    }
+    {
+      areaCoverage && (
+        <CoverageSection
+          title={areaCoverage.title}
+          description={areaCoverage.description}
+          areas={areaCoverage.coverageArea.map(({ areaName }) => areaName)}
+          stats={areaCoverage.distributionStats}
+        />
+      )
+    }
+    {
+      qualityAndComplianceStandards && (
+        <QualityStandards
+          title={qualityAndComplianceStandards.title}
+          description={qualityAndComplianceStandards.description}
+          keyPoints={qualityAndComplianceStandards.keyValues}
+        />
+      )
+    }
   </main>
 </MainLayout>

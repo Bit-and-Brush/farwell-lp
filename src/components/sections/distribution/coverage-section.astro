@@ -2,60 +2,55 @@
 import SectionHeader from "@/components/common/section-header.astro";
 import { MapPinIcon } from "lucide-react";
 
-const provinces = [
-  "Benguela",
-  "Cabinda",
-  "Huambo",
-  "Huíla",
-  "Luanda",
-  "Namibe",
-  "Lobito",
-  "Cuando Cubango",
-];
+type Props = {
+  title: string;
+  description: string;
+  areas?: string[];
+  stats?: { title: string; description: string }[];
+};
+
+const { title, description, areas, stats } = Astro.props;
 ---
 
 <section class="bg-grey-950/30">
   <div class="container py-20">
-    <SectionHeader
-      title="Cobertura de Distribuição"
-      description="A nossa rede de distribuição abrange todo o território angolano, garantindo que os produtos farmacêuticos cheguem às unidades de saúde em todo o país."
-    />
+    <SectionHeader title={title} description={description} />
     <div class="mx-auto mt-12 grid max-w-4xl gap-12 md:grid-cols-2">
-      <div class="space-y-6">
-        <div class="flex items-center gap-2">
-          <MapPinIcon className="text-primary" size={32} />
-          <h3 class="text-secondary text-xl leading-8 font-bold">
-            Áreas de Cobertura
-          </h3>
-        </div>
-        <ul class="grid grid-cols-2 gap-4">
-          {
-            provinces.map((province) => (
-              <li class="bg-background flex items-center gap-2 rounded-xl border p-3">
-                <div class="bg-primary size-3 rounded-full" />
-                <span class="flex-1">{province}</span>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <div class="bg-background rounded-xl border p-8">
-        <h3 class="text-secondary text-xl leading-8 font-bold">
-          Estatisticas de Distribuição
-        </h3>
-        <div
-          class="*:even:text-primary mt-7 grid grid-cols-2 items-center gap-y-4 *:even:text-right *:even:text-lg *:even:font-bold"
-        >
-          <p>Cliente Activos</p>
-          <p>+500</p>
-          <p>Entregas Mensais</p>
-          <p>+2.000</p>
-          <p>Províncias de Cobertura</p>
-          <p>18</p>
-          <p>Anos de Experiência</p>
-          <p>+20</p>
-        </div>
-      </div>
+      {
+        areas && areas.length > 0 && (
+          <div class="space-y-6">
+            <div class="flex items-center gap-2">
+              <MapPinIcon className="text-primary" size={32} />
+              <h3 class="text-secondary text-xl leading-8 font-bold">
+                Áreas de Cobertura
+              </h3>
+            </div>
+            <ul class="grid grid-cols-2 gap-4">
+              {areas.map((area) => (
+                <li class="bg-background flex items-center gap-2 rounded-xl border p-3">
+                  <div class="bg-primary size-3 rounded-full" />
+                  <span class="flex-1">{area}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+      {
+        stats && stats.length > 0 && (
+          <div class="bg-background rounded-xl border p-8">
+            <h3 class="text-secondary text-xl leading-8 font-bold">
+              Estatisticas de Distribuição
+            </h3>
+            <div class="*:even:text-primary mt-7 grid grid-cols-2 items-center gap-y-4 *:even:text-right *:even:text-lg *:even:font-bold">
+              {stats.map(({ title, description }) => (
+                <p>{title}</p>
+                <p>{description}</p>
+              ))}
+            </div>
+          </div>
+        )
+      }
     </div>
   </div>
 </section>

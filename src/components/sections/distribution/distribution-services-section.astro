@@ -1,62 +1,35 @@
 ---
 import CardItemWithBulletPoints from "@/components/common/card-item-with-bullet-points.astro";
 import SectionHeader from "@/components/common/section-header.astro";
-import { PackageIcon } from "lucide-react";
+
+type Props = {
+  title: string;
+  description: string;
+  services: {
+    title: string;
+    iconUrl?: string;
+    description: string;
+    bulletPoints?: string[];
+  }[];
+};
+
+const { title, description, services } = Astro.props;
 ---
 
 <section class="container space-y-16 py-20">
-  <SectionHeader
-    title="Os Nossos Serviços de Distribuição"
-    description="Soluções completas de distribuição farmacêutica, concebidas para cumprir os mais elevados padrões de qualidade, segurança e conformidade regulamentar."
-  />
-  <ul class="grid gap-8 md:grid-cols-2">
-    <CardItemWithBulletPoints
-      title="Gestão da Cadeia de Frio"
-      description="Armazenamento e transporte com controlo de temperatura para produtos farmacêuticos sensíveis."
-      bulletPoints={[
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-      ]}
-    >
-      <PackageIcon className="text-primary" size={24} slot="icon" />
-    </CardItemWithBulletPoints>
-    <CardItemWithBulletPoints
-      title="Gestão da Cadeia de Frio"
-      description="Armazenamento e transporte com controlo de temperatura para produtos farmacêuticos sensíveis."
-      bulletPoints={[
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-      ]}
-    >
-      <PackageIcon className="text-primary" size={24} slot="icon" />
-    </CardItemWithBulletPoints>
-    <CardItemWithBulletPoints
-      title="Gestão da Cadeia de Frio"
-      description="Armazenamento e transporte com controlo de temperatura para produtos farmacêuticos sensíveis."
-      bulletPoints={[
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-      ]}
-    >
-      <PackageIcon className="text-primary" size={24} slot="icon" />
-    </CardItemWithBulletPoints>
-    <CardItemWithBulletPoints
-      title="Gestão da Cadeia de Frio"
-      description="Armazenamento e transporte com controlo de temperatura para produtos farmacêuticos sensíveis."
-      bulletPoints={[
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-        "Monitorização de Temperatura",
-      ]}
-    >
-      <PackageIcon className="text-primary" size={24} slot="icon" />
-    </CardItemWithBulletPoints>
-  </ul>
+  <SectionHeader title={title} description={description} />
+  {
+    services && (
+      <ul class="grid gap-8 md:grid-cols-2">
+        {services.map(({ description, title, bulletPoints, iconUrl }) => (
+          <CardItemWithBulletPoints
+            title={title}
+            description={description}
+            bulletPoints={bulletPoints ?? []}
+            iconUrl={iconUrl}
+          />
+        ))}
+      </ul>
+    )
+  }
 </section>

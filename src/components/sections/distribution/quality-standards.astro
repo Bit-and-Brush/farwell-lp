@@ -1,32 +1,33 @@
 ---
 import QualityStandardItem from "@/components/common/quality-standard-item.astro";
 import SectionHeader from "@/components/common/section-header.astro";
-import { ShieldCheckIcon } from "lucide-react";
+
+type Props = {
+  title: string;
+  description: string;
+  keyPoints: {
+    iconUrl?: string;
+    title: string;
+    description: string;
+  }[];
+};
+
+const { title, description, keyPoints } = Astro.props;
 ---
 
 <section class="container space-y-6 py-20">
-  <SectionHeader
-    title="Normas de Qualidade & Conformidade"
-    description="Mantemos os mais altos padrões na distribuição farmacêutica, garantindo a integridade dos produtos desde o armazém até ao destino final."
-  />
-  <ul class="mx-auto grid max-w-4xl gap-8 lg:grid-cols-3">
-    <QualityStandardItem
-      title="Certificação GMP"
-      description="Conformidade com as Boas Práticas de Fabricação"
-    >
-      <ShieldCheckIcon className="text-primary" size={32} slot="icon" />
-    </QualityStandardItem>
-    <QualityStandardItem
-      title="Certificação GMP"
-      description="Conformidade com as Boas Práticas de Fabricação"
-    >
-      <ShieldCheckIcon className="text-primary" size={32} slot="icon" />
-    </QualityStandardItem>
-    <QualityStandardItem
-      title="Certificação GMP"
-      description="Conformidade com as Boas Práticas de Fabricação"
-    >
-      <ShieldCheckIcon className="text-primary" size={32} slot="icon" />
-    </QualityStandardItem>
-  </ul>
+  <SectionHeader title={title} description={description} />
+  {
+    keyPoints && (
+      <ul class="mx-auto grid max-w-4xl gap-8 lg:grid-cols-3">
+        {keyPoints.map(({ description, title, iconUrl }) => (
+          <QualityStandardItem
+            title={title}
+            description={description}
+            iconUrl={iconUrl}
+          />
+        ))}
+      </ul>
+    )
+  }
 </section>

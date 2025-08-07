@@ -1,20 +1,31 @@
 ---
+import { Image } from "astro:assets";
+
 type Props = {
   title: string;
   description: string;
   bulletPoints: string[];
+  iconUrl?: string;
 };
 
-const { title, description, bulletPoints } = Astro.props;
+const { title, description, bulletPoints, iconUrl } = Astro.props;
 ---
 
 <li class="bg-background space-y-6 rounded-xl border p-8 px-7 shadow-xs">
   <div class="flex items-center gap-4">
-    <div
-      class="bg-primary/10 flex size-12 items-center justify-center rounded-xl"
-    >
-      <slot name="icon" />
-    </div>
+    {
+      iconUrl && (
+        <div class="bg-primary/10 flex size-12 items-center justify-center rounded-xl">
+          <Image
+            src={iconUrl}
+            alt={title}
+            loading="lazy"
+            width={24}
+            height={24}
+          />
+        </div>
+      )
+    }
     <h3 class="text-secondary text-xl font-bold">{title}</h3>
   </div>
   <p class="text-sm leading-6">{description}</p>
