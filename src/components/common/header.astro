@@ -1,8 +1,8 @@
 ---
+import { HeaderLogoSVG } from "@/assets";
 import { BookIcon, UserIcon } from "lucide-react";
 import MobileNavMenu from "../interactive/mobile-nav-menu";
 import ButtonLink from "./button-link.astro";
-import Logo from "./logo.astro";
 import NavLinks from "./nav-links.astro";
 
 type Props = {
@@ -17,7 +17,9 @@ const { catalogUrl, clientAreaUrl } = Astro.props;
   class="bg-background fixed top-0 right-0 left-0 z-20 border-b shadow-sm"
 >
   <div class="container flex items-center justify-between py-4">
-    <a href="/"> <Logo /></a>
+    <a href="/">
+      <HeaderLogoSVG height={50} />
+    </a>
     <nav class="hidden lg:block">
       <ul
         class="*:hover:text-primary/70 text-secondary flex gap-8 text-sm leading-6"
