@@ -1,6 +1,6 @@
 ---
 import type { HeroData } from "@/api/type";
-import { Button } from "@/components/ui/button";
+import ButtonLink from "@/components/common/button-link.astro";
 import { Image } from "astro:assets";
 
 type Props = Partial<HeroData>;
@@ -24,10 +24,7 @@ const {
         {description}
       </p>
       <div class="flex flex-col gap-4 md:flex-row">
-        <Button>Nossos produtos</Button>
-        <Button className="bg-background text-secondary hover:bg-background/90"
-          >Saber mais</Button
-        >
+        <ButtonLink href="/products">Nossos produtos</ButtonLink>
       </div>
       {
         keyValue && (
