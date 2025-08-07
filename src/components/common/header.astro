@@ -4,6 +4,13 @@ import MobileNavMenu from "../interactive/mobile-nav-menu";
 import ButtonLink from "./button-link.astro";
 import Logo from "./logo.astro";
 import NavLinks from "./nav-links.astro";
+
+type Props = {
+  catalogUrl?: string;
+  clientAreaUrl?: string;
+};
+
+const { catalogUrl, clientAreaUrl } = Astro.props;
 ---
 
 <header
@@ -20,18 +27,26 @@ import NavLinks from "./nav-links.astro";
     </nav>
     <div>
       <div class="flex items-center gap-6 text-sm max-lg:hidden">
-        <ButtonLink title="Ver Catálogo" href="#"
-          ><BookIcon />
-          <span class="max-xl:hidden">Ver Catálogo</span></ButtonLink
-        >
-        <ButtonLink
-          title="Área de Clientes"
-          target="_blank"
-          href="https://my.farwell.co.ao/pt/"
-        >
-          <UserIcon />
-          <span class="max-xl:hidden">Área de Clientes</span>
-        </ButtonLink>
+        {
+          catalogUrl && (
+            <ButtonLink title="Ver Catálogo" download href={catalogUrl}>
+              <BookIcon />
+              <span class="max-xl:hidden">Ver Catálogo</span>
+            </ButtonLink>
+          )
+        }
+        {
+          clientAreaUrl && (
+            <ButtonLink
+              title="Área de Clientes"
+              target="_blank"
+              href={clientAreaUrl}
+            >
+              <UserIcon />
+              <span class="max-xl:hidden">Área de Clientes</span>
+            </ButtonLink>
+          )
+        }
       </div>
       <MobileNavMenu client:visible>
         <NavLinks />

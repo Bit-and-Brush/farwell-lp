@@ -8,9 +8,21 @@ import "@fontsource/poppins/700.css";
 
 type Props = {
   extendedTitle?: string;
+  headerLinks?: {
+    catalog?: string;
+    clientArea?: string;
+  };
+  footer?: {
+    description?: string;
+    services: string[];
+  };
 };
 
-const { extendedTitle = "Estamos aqui para fazer melhor" } = Astro.props;
+const {
+  extendedTitle = "Estamos aqui para fazer melhor",
+  headerLinks,
+  footer,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -28,9 +40,12 @@ const { extendedTitle = "Estamos aqui para fazer melhor" } = Astro.props;
     <title>Farwell - {extendedTitle}</title>
   </head>
   <body>
-    <Header />
+    <Header
+      catalogUrl={headerLinks?.catalog}
+      clientAreaUrl={headerLinks?.clientArea}
+    />
     <slot />
-    <Footer />
+    <Footer description={footer?.description} services={[]} />
     <ScrollToTopButton />
   </body>
 </html>

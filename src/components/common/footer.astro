@@ -2,7 +2,13 @@
 import { Heart } from "lucide-react";
 import Logo from "./logo.astro";
 
+type Props = {
+  description?: string;
+  services: string[];
+};
+
 const year = new Date().getFullYear();
+const { description, services } = Astro.props;
 ---
 
 <footer class="bg-secondary text-secondary-foreground py-12">
@@ -10,19 +16,22 @@ const year = new Date().getFullYear();
     <div class="space-y-4">
       <Logo class="text-background" />
       <p class="text-sm">
-        Mais de 20 anos de distribuição confiável de produtos farmacêuticos e
-        hospitalares em Angola.
+        {description}
       </p>
     </div>
-    <div>
-      <p class="text-background mb-4 font-bold">Serviços</p>
-      <ul class="space-y-2 text-sm">
-        <li>Produtos farmacêuticos</li>
-        <li>Equipamento hospitalar</li>
-        <li>Equipamentos médicos</li>
-        <li>Produtos Laboratoriais</li>
-      </ul>
-    </div>
+    {
+      services && services.length > 0 && (
+        <div>
+          <p class="text-background mb-4 font-bold">Serviços</p>
+          <ul class="space-y-2 text-sm">
+            <li>Produtos farmacêuticos</li>
+            <li>Equipamento hospitalar</li>
+            <li>Equipamentos médicos</li>
+            <li>Produtos Laboratoriais</li>
+          </ul>
+        </div>
+      )
+    }
     <div>
       <p class="text-background mb-4 font-bold">Contactos</p>
       <ul class="space-y-2 text-sm">
@@ -43,8 +52,8 @@ const year = new Date().getFullYear();
   <div
     class="border-background/20 text-background/60 container flex items-center justify-center gap-1 border-t pt-8 text-center text-sm"
   >
-    <p class="max-md:flex-1">© {year} FARWELL. Made with</p>
+    <p class="max-md:flex-1">© {year} FARWELL. Feito com</p>
     <Heart size={16} className="text-primary" />
-    <p class="max-md:flex-1">for Angola's healthcare</p>
+    <p class="max-md:flex-1">para a saúde em Angola.</p>
   </div>
 </footer>
