@@ -1,8 +1,20 @@
-import { MenuIcon, XIcon } from "lucide-react";
-import { useEffect, useRef, useState, type PropsWithChildren } from "react";
+import { ROUTES } from "@/lib/constants";
+import { ChevronDownIcon, MenuIcon, XIcon } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "../ui/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "../ui/collapsible";
 
-export default function MobileNavMenu({ children }: PropsWithChildren) {
+const routes = ROUTES;
+
+type Props = {
+  pathname: string;
+};
+
+export default function MobileNavMenu({ pathname }: Props) {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -58,7 +70,42 @@ export default function MobileNavMenu({ children }: PropsWithChildren) {
       >
         <div className="relative flex h-full flex-col items-center justify-evenly px-10">
           <nav className="self-stretch lg:hidden">
-            <ul className="flex flex-col gap-5 text-center">{children}</ul>
+            <ul className="flex flex-col gap-5 text-center">
+              {routes.map(({ text, children, href }, index) =>
+                !children ? (
+                  <li key={index}>
+                    <a
+                      href={href}
+                      className={pathname === href ? "text-primary" : ""}
+                    >
+                      {text}
+                    </a>
+                  </li>
+                ) : (
+                  <Collapsible key={index}>
+                    <CollapsibleTrigger className="flex w-full items-center justify-center">
+                      {text} <ChevronDownIcon size={18} />
+                    </CollapsibleTrigger>
+                    <CollapsibleContent asChild>
+                      <ul className="bg-grey-950 space-y-2.5 rounded-xl py-2">
+                        {children.map(({ text, href }, index) => (
+                          <li key={index}>
+                            <a
+                              href={href}
+                              className={
+                                pathname === href ? "text-primary" : ""
+                              }
+                            >
+                              {text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </CollapsibleContent>
+                  </Collapsible>
+                ),
+              )}
+            </ul>
           </nav>
           <div className="mx-auto flex w-full max-w-md items-center justify-center gap-2">
             <Button asChild>
