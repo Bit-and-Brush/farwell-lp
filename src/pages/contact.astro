@@ -1,15 +1,36 @@
 ---
+import { getPageData } from "@/api";
+import type {
+  GetContactPageDataResponse,
+  GetServicesPageDataResponse,
+} from "@/api/type";
 import ContactSection from "@/components/common/contact-section.astro";
 import PageHero from "@/components/common/page-hero.astro";
 import MainLayout from "@/layouts/main-layout.astro";
+
+const [contactData, servicesFooterList] = await Promise.all([
+  getPageData<GetContactPageDataResponse>("contact"),
+  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
+    _fields: "ourServices",
+  }),
+]);
+const { contacts, header } = contactData;
+const servicesNames =
+  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
 ---
 
-<MainLayout extendedTitle="Contacte-nos">
+<MainLayout extendedTitle="Contacte-nos" footer={{ services: servicesNames }}>
   <main>
-    <PageHero
-      title="Contacte-nos"
-      subtitle="Entre em contacto com a nossa equipa para todas as suas necessidades de distribuição farmacêutica."
-    />
-    <ContactSection />
+    <PageHero title={header.title} subtitle={header.description} />
+    {
+      contacts && (
+        <ContactSection
+          contactUs={contacts.map(({ fields }) => ({
+            fields,
+            title: fields.title,
+          }))}
+        />
+      )
+    }
   </main>
 </MainLayout>

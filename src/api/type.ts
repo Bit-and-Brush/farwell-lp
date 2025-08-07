@@ -182,3 +182,8 @@ interface WhySectionData {
     description: string;
   }[];
 }
+
+export interface GetContactPageDataResponse {
+  header: HeaderData;
+  contacts: Omit<ContactData, "title">[];
+}
