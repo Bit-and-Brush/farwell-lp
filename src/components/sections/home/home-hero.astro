@@ -31,7 +31,13 @@ const {
           <ul class="flex items-center justify-between pt-6 text-center text-xs">
             {keyValue.map(({ image, label }) => (
               <li class="flex flex-col items-center space-y-2">
-                <Image width={32} height={32} alt="" src={image} />
+                <Image
+                  width={32}
+                  height={32}
+                  alt=""
+                  loading="eager"
+                  src={image}
+                />
                 <p>{label}</p>
               </li>
             ))}
@@ -47,6 +53,8 @@ const {
           alt=""
           src={imageUrl}
           class="w-full rounded-2xl"
+          loading="eager"
+          fetchpriority="high"
         />
       )
     }
