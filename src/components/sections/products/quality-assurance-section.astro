@@ -1,34 +1,29 @@
 ---
 import QualityStandardItem from "@/components/common/quality-standard-item.astro";
 import SectionHeader from "@/components/common/section-header.astro";
-import { ShieldCheckIcon } from "lucide-react";
+
+type Props = {
+  title: string;
+  description: string;
+  keyPoints: {
+    iconUrl?: string;
+    title: string;
+    description: string;
+  }[];
+};
+
+const { title, description, keyPoints } = Astro.props;
 ---
 
 <section class="container space-y-6 py-20">
-  <SectionHeader
-    title="Garantia da Qualidade"
-    description="Todos os nossos produtos cumprem os padrões internacionais de qualidade e são provenientes de fabricantes certificados. Mantemos processos rigorosos de controlo de qualidade para garantir a segurança e a eficácia de todos os produtos farmacêuticos e médicos que distribuímos."
-  />
-  <ul class="mx-auto grid max-w-4xl gap-8 lg:grid-cols-3">
-    <QualityStandardItem
-      title="Qualidade Certificada"
-      description="Certificações internacionais de qualidade e conformidade"
-    >
-      <ShieldCheckIcon className="text-primary" size={32} slot="icon" />
-    </QualityStandardItem>
-
-    <QualityStandardItem
-      title="Qualidade Certificada"
-      description="Certificações internacionais de qualidade e conformidade"
-    >
-      <ShieldCheckIcon className="text-primary" size={32} slot="icon" />
-    </QualityStandardItem>
-
-    <QualityStandardItem
-      title="Qualidade Certificada"
-      description="Certificações internacionais de qualidade e conformidade"
-    >
-      <ShieldCheckIcon className="text-primary" size={32} slot="icon" />
-    </QualityStandardItem>
-  </ul>
+  <SectionHeader title={title} description={description} />
+  {
+    keyPoints && (
+      <ul class="mx-auto grid max-w-4xl gap-8 lg:grid-cols-3">
+        {keyPoints.map((keyPoint) => (
+          <QualityStandardItem {...keyPoint} />
+        ))}
+      </ul>
+    )
+  }
 </section>

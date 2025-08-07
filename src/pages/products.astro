@@ -1,17 +1,20 @@
 ---
+import { getPageData } from "@/api";
+import type { GetProductPageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import ProductsSection from "@/components/sections/products/products-section.astro";
 import QualityAssuranceSection from "@/components/sections/products/quality-assurance-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
+
+const { header, qualityAssurance } =
+  await getPageData<GetProductPageDataResponse>("/getProductsData");
 ---
 
 <MainLayout extendedTitle="Os Nossos Produtos">
   <main>
-    <PageHero
-      title="Os Nossos Produtos"
-      subtitle="Soluções farmacêuticas e médicas completas para o setor da saúde em Angola. Mais de 20 anos de distribuição de confiança e serviço de qualidade."
-    />
+    <PageHero title={header.title} subtitle={header.description} />
+    <!-- TODO: Missing data for the API -->
     <ProductsSection />
-    <QualityAssuranceSection />
+    {qualityAssurance && <QualityAssuranceSection {...qualityAssurance} />}
   </main>
 </MainLayout>
