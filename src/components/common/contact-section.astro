@@ -1,28 +1,31 @@
 ---
+import type { ContactUsData } from "@/api/type";
 import Contacts from "@/components/common/contacts.astro";
 import SectionHeader from "@/components/common/section-header.astro";
 import ContactForm from "@/components/interactive/forms/contact-form";
 
 type Props = {
   isHomePage?: boolean;
-};
+} & Partial<ContactUsData>;
 
-const { isHomePage = false } = Astro.props;
+const { isHomePage = false, contactUs, description, title } = Astro.props;
 ---
 
 <section class="bg-grey-950/30">
   <div class="container space-y-16 py-20">
-    {
-      isHomePage && (
-        <SectionHeader
-          title="Contacte-nos"
-          description="Entre em contato com nossa equipe para atender a todas as suas necessidades de distribuição farmacêutica."
-        />
-      )
-    }
+    {isHomePage && <SectionHeader title={title} description={description} />}
     <div class="grid gap-4 lg:grid-cols-2">
       <ContactForm client:visible />
-      <Contacts />
+      {
+        contactUs && (
+          <Contacts
+            contacts={contactUs.map(({ fields: { value }, title }) => ({
+              title,
+              value,
+            }))}
+          />
+        )
+      }
     </div>
   </div>
 </section>

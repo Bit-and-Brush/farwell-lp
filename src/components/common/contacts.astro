@@ -1,22 +1,21 @@
 ---
-import { ClockIcon, MailIcon, MapPinIcon, PhoneIcon } from "lucide-react";
 import ContactCardItem from "./contact-card-item.astro";
+
+type Props = {
+  contacts: ReadonlyArray<{
+    title: string;
+    value: string;
+    icon?: string;
+  }>;
+};
+
+const { contacts } = Astro.props;
 ---
 
 <ul class="space-y-6">
-  <ContactCardItem title="Endereço" content="Luanda, Angola">
-    <MapPinIcon className="text-primary" slot="icon" />
-  </ContactCardItem>
-  <ContactCardItem title="Telefone" content="+244 999 999 999">
-    <PhoneIcon className="text-primary" slot="icon" />
-  </ContactCardItem>
-  <ContactCardItem title="Email" content="info@farwell.co.ao">
-    <MailIcon className="text-primary" slot="icon" />
-  </ContactCardItem>
-  <ContactCardItem
-    title="Horário de Funcionamento"
-    content="Segunda-feira a Sexta-feira: 8:00 - 18:00 Sábado: 8:00 - 14:00"
-  >
-    <ClockIcon className="text-primary" slot="icon" />
-  </ContactCardItem>
+  {
+    contacts.map(({ title, value, icon }) => (
+      <ContactCardItem title={title} content={value} iconUrl={icon} />
+    ))
+  }
 </ul>

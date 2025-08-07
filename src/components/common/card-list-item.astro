@@ -1,16 +1,19 @@
 ---
+import { Image } from "astro:assets";
+
 type Props = {
   title: string;
   description: string;
+  iconUrl?: string;
 };
 
-const { title, description } = Astro.props;
+const { title, description, iconUrl } = Astro.props;
 ---
 
 <li
   class="bg-background flex h-56 flex-col items-center justify-center rounded-xl border px-7 text-center shadow-xs"
 >
-  <slot name="icon" />
+  {iconUrl && <Image src={iconUrl} alt={title} width={48} height={48} />}
   <h3 class="text-secondary mt-4 mb-3 text-lg font-bold">{title}</h3>
   <p class="text-sm">{description}</p>
 </li>

@@ -1,16 +1,21 @@
 ---
+import { getPageData } from "@/api";
+import type { GetHomePageDataResponse } from "@/api/type";
 import ContactSection from "@/components/common/contact-section.astro";
 import AboutSection from "@/components/sections/home/about-section.astro";
 import HomeHero from "@/components/sections/home/home-hero.astro";
 import ServicesSection from "@/components/sections/home/services-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
+
+const { aboutUs, contactUs, hero, ourServices } =
+  await getPageData<GetHomePageDataResponse>("/getHomeData");
 ---
 
 <MainLayout>
   <main>
-    <HomeHero />
-    <AboutSection />
-    <ServicesSection />
-    <ContactSection isHomePage />
+    {hero && <HomeHero {...hero} />}
+    {aboutUs && <AboutSection {...aboutUs} />}
+    {ourServices && <ServicesSection {...ourServices} />}
+    {contactUs && <ContactSection {...contactUs} isHomePage />}
   </main>
 </MainLayout>

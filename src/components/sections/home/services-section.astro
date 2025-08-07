@@ -1,38 +1,25 @@
 ---
+import type { OurServicesData } from "@/api/type";
 import SectionHeader from "@/components/common/section-header.astro";
-import { PillIcon } from "lucide-react";
 import ServiceListItem from "./service-list-item.astro";
+
+type Props = Partial<OurServicesData>;
+const { description, services, title } = Astro.props;
 ---
 
 <section class="container space-y-16 py-20">
-  <SectionHeader
-    title="Os Nossos Serviços"
-    description="Serviços abrangentes de distribuição de produtos farmacêuticos e médicos personalizados para atender às necessidades do setor de saúde de Angola."
-  />
-  <ul class="grid gap-8 md:grid-cols-2">
-    <ServiceListItem
-      title="Produtos Farmaceuticos"
-      description="Ampla variedade de medicamentos de prescrição e de balcão de fornecedores internacionais de confiança."
-    >
-      <PillIcon slot="icon" className="text-primary" />
-    </ServiceListItem>
-    <ServiceListItem
-      title="Produtos Farmaceuticos"
-      description="Ampla variedade de medicamentos de prescrição e de balcão de fornecedores internacionais de confiança."
-    >
-      <PillIcon slot="icon" className="text-primary" />
-    </ServiceListItem>
-    <ServiceListItem
-      title="Produtos Farmaceuticos"
-      description="Ampla variedade de medicamentos de prescrição e de balcão de fornecedores internacionais de confiança."
-    >
-      <PillIcon slot="icon" className="text-primary" />
-    </ServiceListItem>
-    <ServiceListItem
-      title="Produtos Farmaceuticos"
-      description="Ampla variedade de medicamentos de prescrição e de balcão de fornecedores internacionais de confiança."
-    >
-      <PillIcon slot="icon" className="text-primary" />
-    </ServiceListItem>
-  </ul>
+  <SectionHeader title={title} description={description} />
+  {
+    services && (
+      <ul class="grid gap-8 md:grid-cols-2">
+        {services.map(({ fields: { description, icon: iconUrl }, title }) => (
+          <ServiceListItem
+            description={description}
+            title={title}
+            iconUrl={iconUrl}
+          />
+        ))}
+      </ul>
+    )
+  }
 </section>
