@@ -17,7 +17,7 @@ const { catalogUrl, clientAreaUrl } = Astro.props;
   class="bg-background fixed top-0 right-0 left-0 z-20 border-b shadow-sm"
 >
   <div class="container flex items-center justify-between py-4">
-    <a href="/">
+    <a href="/" title="Página Inicial" aria-label="Página Inicial">
       <HeaderLogoSVG height={50} />
     </a>
     <DesktopNavMenu client:visible pathname={Astro.url.pathname} />

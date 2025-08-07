@@ -125,7 +125,7 @@ export default function ContactForm() {
           )}
         />
         <Button type="submit" className="w-full">
-          Submit
+          Enviar mensagem
         </Button>
       </form>
     </Form>
