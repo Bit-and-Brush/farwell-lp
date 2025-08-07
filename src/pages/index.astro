@@ -8,7 +8,7 @@ import ServicesSection from "@/components/sections/home/services-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
 const { aboutUs, contactUs, hero, ourServices } =
-  await getPageData<GetHomePageDataResponse>("/getHomeData");
+  await getPageData<GetHomePageDataResponse>("home");
 ---
 
 <MainLayout>

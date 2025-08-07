@@ -7,7 +7,7 @@ import QualityAssuranceSection from "@/components/sections/products/quality-assu
 import MainLayout from "@/layouts/main-layout.astro";
 
 const { header, qualityAssurance } =
-  await getPageData<GetProductPageDataResponse>("/getProductsData");
+  await getPageData<GetProductPageDataResponse>("products");
 ---
 
 <MainLayout extendedTitle="Os Nossos Produtos">

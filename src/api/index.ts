@@ -1,5 +1,14 @@
 import { API_ENDPOINT } from "astro:env/server";
 
+export const pageResources = {
+  home: "/getHomeData",
+  products: "/getProductsData",
+  about: "/getAboutData",
+  services: "/getServiceData",
+  contact: "/getContactData",
+  distribution: "/getDistributionData",
+} as const;
+
 /**
  * Fetches data from a given endpoint and returns the response as a JSON object to feed the page.
  *
@@ -10,11 +19,15 @@ import { API_ENDPOINT } from "astro:env/server";
  * @throws Will throw an error if the network request fails.
  */
 export async function getPageData<Response>(
-  endpoint: string,
+  endpoint: keyof typeof pageResources,
   params: Record<string, string | number | boolean> = {},
 ): Promise<Response> {
+  const resource = pageResources[endpoint] ?? undefined;
+  if (!resource) {
+    throw new Error(`Endpoint ${endpoint} does not exist in pageResources.`);
+  }
   const url = buildUrl(
-    endpoint,
+    resource,
     Object.fromEntries(
       Object.entries(params).map(([key, value]) => [key, value.toString()]),
     ),
