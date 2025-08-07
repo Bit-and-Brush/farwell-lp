@@ -1,6 +1,7 @@
 ---
+import { footerLogoImage } from "@/assets";
+import { Image } from "astro:assets";
 import { Heart } from "lucide-react";
-import Logo from "./logo.astro";
 
 type Props = {
   description?: string;
@@ -14,7 +15,12 @@ const { description, services } = Astro.props;
 <footer class="bg-secondary text-secondary-foreground py-12">
   <div class="container mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
     <div class="space-y-4">
-      <Logo class="text-background" />
+      <Image
+        class="max-w-3xs"
+        src={footerLogoImage}
+        alt="Farwell"
+        loading="lazy"
+      />
       <p class="text-sm">
         {description}
       </p>
