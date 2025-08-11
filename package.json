@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "start": "node ./dist/server/entry.mjs",
+    "start:bucket": "node ./dist/server/entry.mjs",
+    "start": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.522.0",
     "motion": "^12.18.1",
+    "pnpm": "^10.14.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.58.1",
