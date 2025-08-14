@@ -5,7 +5,7 @@ export const ROUTES = [
     children: [
       { text: "Quem Somos", href: "/about" },
       { text: "Missão, Visão e Valores", href: "/about#mission" },
-      // { text: "Politica da Qualidade", href: "/about" },
+      { text: "Politica da Qualidade", href: "/quality-policy" },
       // { text: "A Nossa Equipa", href: "/about" },
       // { text: "Instalações", href: "/about" },
     ],
