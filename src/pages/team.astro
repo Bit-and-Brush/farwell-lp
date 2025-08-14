@@ -1,0 +1,32 @@
+---
+import { getPageData } from "@/api";
+import type { GetServicesPageDataResponse } from "@/api/type";
+import PageHero from "@/components/common/page-hero.astro";
+import TeamItem from "@/components/sections/team/team-item.astro";
+import MainLayout from "@/layouts/main-layout.astro";
+
+const [servicesFooterList] = await Promise.all([
+  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
+    _fields: "ourServices",
+  }),
+]);
+const servicesNames =
+  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
+---
+
+<MainLayout
+  extendedTitle="Política de Qualidade"
+  footer={{ services: servicesNames }}
+>
+  <main>
+    <PageHero
+      title="A Nossa Equipa"
+      subtitle="Profissionais dedicados que garantem uma distribuição de alta qualidade, fiável e em conformidade por todo o território de Angola."
+    />
+    <section class="container py-10 md:grid-cols-2 lg:py-16">
+      <ul class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+        {Array.from({ length: 6 }).map(() => <TeamItem />)}
+      </ul>
+    </section>
+  </main>
+</MainLayout>
