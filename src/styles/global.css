@@ -45,7 +45,7 @@ html {
   --radius: 0.625rem;
   --background: hsl(0, 0%, 100%);
   --foreground: hsl(330, 20%, 40%);
-  --primary: hsla(330, 81%, 60%, 1);
+  --primary: hsla(311, 36%, 49%, 1);
   --primary-foreground: hsla(0, 0%, 100%, 1);
   --secondary: hsla(223, 84%, 5%, 1);
   --secondary-foreground: hsla(0, 0%, 100%, 0.8);
