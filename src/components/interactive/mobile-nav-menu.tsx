@@ -12,9 +12,15 @@ const routes = ROUTES;
 
 type Props = {
   pathname: string;
+  catalogUrl?: string;
+  clientAreaUrl?: string;
 };
 
-export default function MobileNavMenu({ pathname }: Props) {
+export default function MobileNavMenu({
+  pathname,
+  catalogUrl,
+  clientAreaUrl,
+}: Props) {
   const sidebarRef = useRef<HTMLDivElement>(null);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -108,20 +114,30 @@ export default function MobileNavMenu({ pathname }: Props) {
             </ul>
           </nav>
           <div className="mx-auto flex w-full max-w-md items-center justify-center gap-2">
-            <Button asChild>
-              <a href="#" title="Ver Catálogo">
-                Ver Catálogo
-              </a>
-            </Button>
-            <Button>
-              <a
-                title="Área de Clientes"
-                target="_blank"
-                href="https://my.farwell.co.ao/pt/"
-              >
-                Área de Clientes
-              </a>
-            </Button>
+            {catalogUrl && (
+              <Button asChild>
+                <a
+                  href={catalogUrl}
+                  download
+                  onClick={closeMenuOnClick}
+                  title="Ver Catálogo"
+                >
+                  Ver Catálogo
+                </a>
+              </Button>
+            )}
+            {clientAreaUrl && (
+              <Button>
+                <a
+                  title="Área de Clientes"
+                  target="_blank"
+                  onClick={closeMenuOnClick}
+                  href={clientAreaUrl}
+                >
+                  Área de Clientes
+                </a>
+              </Button>
+            )}
           </div>
         </div>
       </div>
