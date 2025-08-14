@@ -7,7 +7,7 @@ export const ROUTES = [
       { text: "Missão, Visão e Valores", href: "/about#mission" },
       { text: "Politica da Qualidade", href: "/quality-policy" },
       { text: "A Nossa Equipa", href: "/team" },
-      // { text: "Instalações", href: "/about" },
+      { text: "Instalações", href: "/facilities" },
     ],
   },
   {

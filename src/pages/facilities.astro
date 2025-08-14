@@ -1,0 +1,42 @@
+---
+import { getPageData } from "@/api";
+import type { GetServicesPageDataResponse } from "@/api/type";
+import PageHero from "@/components/common/page-hero.astro";
+import FeaturesSection from "@/components/sections/facilities/features-section.astro";
+import MainLayout from "@/layouts/main-layout.astro";
+
+const [servicesFooterList] = await Promise.all([
+  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
+    _fields: "ourServices",
+  }),
+]);
+const servicesNames =
+  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
+---
+
+<MainLayout extendedTitle="Instalações" footer={{ services: servicesNames }}>
+  <main>
+    <PageHero
+      title="As Nossas Instalações"
+      subtitle="Operamos instalações modernas e em conformidade, para garantir uma distribuição segura e eficiente em todo o território de Angola e além."
+    />
+    <FeaturesSection />
+    <section class="container mt-10 mb-12 space-y-4">
+      <h2 class="text-secondary text-xl font-bold">Capacidades</h2>
+      <ul class="grid grid-cols-1 gap-2 lg:grid-cols-2">
+        <li class="text-sm">
+          Armazenamento e transporte com controlo de temperatura
+        </li>
+        <li class="text-sm">
+          Armazenamento e transporte com controlo de temperatura
+        </li>
+        <li class="text-sm">
+          Armazenamento e transporte com controlo de temperatura
+        </li>
+        <li class="text-sm">
+          Armazenamento e transporte com controlo de temperatura
+        </li>
+      </ul>
+    </section>
+  </main>
+</MainLayout>
