@@ -14,10 +14,10 @@ export const ROUTES = [
     text: "Distribuição Farmacêutica",
     href: "/distribution",
   },
-  // {
-  //   text: "Diagnósticos",
-  //   href: "/diagnostics",
-  // },
+  {
+    text: "Diagnósticos",
+    href: "/diagnostics",
+  },
   {
     text: "Serviços",
     href: "/services",
