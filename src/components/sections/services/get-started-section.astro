@@ -1,13 +1,21 @@
 ---
-import { MessageSquareIcon, PhoneIcon } from "lucide-react";
+import { Image } from "astro:assets";
 
 type Props = {
   title: string;
   description: string;
-  phone?: string;
-  email?: string;
+  contacts: {
+    title: string;
+    fields: {
+      icon: string;
+      value: string;
+    };
+  }[];
 };
-const { description, title, email, phone } = Astro.props;
+const { description, title, contacts = [] } = Astro.props;
+
+const phone = contacts.find(({ title }) => title === "Telefone")?.fields;
+const email = contacts.find(({ title }) => title === "Email")?.fields;
 ---
 
 <section
@@ -24,9 +32,10 @@ const { description, title, email, phone } = Astro.props;
       phone && (
         <a
           class="flex items-center gap-2 hover:underline"
-          href={`tel:${phone}`}
+          href={`tel:${phone.value}`}
         >
-          <PhoneIcon size={20} /> +244 XXX XXX XXX
+          <Image src={phone.icon} alt="phone" width={20} height={20} />{" "}
+          {phone.value}
         </a>
       )
     }
@@ -34,9 +43,10 @@ const { description, title, email, phone } = Astro.props;
       email && (
         <a
           class="flex items-center gap-2 hover:underline"
-          href={`mailto:${email}`}
+          href={`mailto:${email.value}`}
         >
-          <MessageSquareIcon size={20} /> info@farwell.co.ao
+          <Image src={email.icon} alt="phone" width={20} height={20} />{" "}
+          {email.value}
         </a>
       )
     }
