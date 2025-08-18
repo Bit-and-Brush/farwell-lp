@@ -19,9 +19,10 @@ const { isHomePage = false, contactUs, description, title } = Astro.props;
       {
         contactUs && (
           <Contacts
-            contacts={contactUs.map(({ fields: { value }, title }) => ({
+            contacts={contactUs.map(({ fields: { value, icon }, title }) => ({
               title,
               value,
+              icon,
             }))}
           />
         )
