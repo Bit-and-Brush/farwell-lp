@@ -27,7 +27,11 @@ const servicesNames =
 >
   <main>
     <PageHero title={header.title} subtitle={header.description} />
-    <MissionAndVisionSection />
+    <MissionAndVisionSection
+      mission={principles.mission}
+      vision={principles.vision}
+      values={principles.values}
+    />
     {
       whySection && (
         <WhyUsSection

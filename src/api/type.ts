@@ -166,9 +166,10 @@ interface ContactDataService {
 export interface GetAboutPageDataResponse {
   header: HeaderData;
   principles: {
-    title: string;
-    description: string;
-  }[];
+    mission: string;
+    vision: string;
+    values: string;
+  };
   whySection: WhySectionData;
 }
 

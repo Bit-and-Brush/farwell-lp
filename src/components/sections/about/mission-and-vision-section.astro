@@ -1,3 +1,14 @@
+---
+type Props = Partial<{
+  mission: string;
+  vision: string;
+  values: string;
+}>;
+
+// TODO: Use these props
+const { mission, vision, values } = Astro.props;
+---
+
 <section
   id="mission"
   class="container grid items-start gap-12 py-20 lg:grid-cols-3"
