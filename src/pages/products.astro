@@ -28,6 +28,17 @@ const servicesNames =
     <PageHero title={header.title} subtitle={header.description} />
     <!-- TODO: Missing data for the API -->
     <ProductsSection />
-    {qualityAssurance && <QualityAssuranceSection {...qualityAssurance} />}
+    {
+      qualityAssurance && (
+        <QualityAssuranceSection
+          title={qualityAssurance.title}
+          description={qualityAssurance.description}
+          keyPoints={qualityAssurance.keyPoints.map(({ icon, ...rest }) => ({
+            iconUrl: icon,
+            ...rest,
+          }))}
+        />
+      )
+    }
   </main>
 </MainLayout>
