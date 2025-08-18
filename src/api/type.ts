@@ -52,9 +52,8 @@ export interface ContactUsData {
 interface ContactData {
   title: string;
   fields: {
-    icon: boolean;
+    icon: string;
     value: string;
-    title: string;
   };
 }
 
