@@ -11,7 +11,7 @@ const { title, content, iconUrl } = Astro.props;
 ---
 
 <li class="flex items-start gap-4 rounded-xl border p-6 shadow-xs">
-  {iconUrl && <Image src={iconUrl} alt={title} width={24} height={24} />}
+  {iconUrl && <Image src={iconUrl} alt={""} width={24} height={24} />}
   <div class="flex-1 space-y-1">
     <h3 class="text-secondary font-bold">{title}</h3>
     <p class="text-sm">{content}</p>
