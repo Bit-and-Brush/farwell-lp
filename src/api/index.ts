@@ -48,7 +48,41 @@ export async function getPageData<Response>(
  * @returns The built URL as a string.
  */
 function buildUrl(endpoint: string, params: Record<string, string>) {
-  const url = new URL(API_ENDPOINT + endpoint);
+  const url = new URL(API_ENDPOINT + "/wp-json/wp/v2" + endpoint);
   url.search = new URLSearchParams(params).toString();
   return url.toString();
+}
+
+/**
+ * Sends a contact form message using the data provided
+ *
+ * @param data The data to include in the contact form submission.
+ * @returns A promise that resolves to the response data from the server.
+ * @throws Will throw an error if the network request fails.
+ */
+export async function sendMessage(data: SendMessageRequestBody) {
+  const formDataValues = {
+    "first-name": data.firstName,
+    "last-name": data.lastName,
+    "your-email": data.email,
+    phone: data.phone,
+    "your-message": data.message,
+    _wpcf7_unit_tag: "5f0b306",
+  };
+  const formData = new FormData();
+  Object.entries(formDataValues).forEach(([key, value]) => {
+    formData.append(key, value);
+  });
+  const response = await fetch(
+    API_ENDPOINT + "/wp-json/contact-form-7/v1/contact-forms/9/feedback",
+    {
+      method: "POST",
+      body: formData,
+    },
+  );
+  if (!response.ok) {
+    console.error("Send Message Response:", await response.json());
+    throw new Error("Failed to send message");
+  }
+  return response.json();
 }

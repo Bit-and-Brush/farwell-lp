@@ -183,7 +183,10 @@ interface WhySectionData {
   }[];
 }
 
-export interface GetContactPageDataResponse {
-  header: HeaderData;
-  contacts: Omit<ContactData, "title">[];
+export interface SendMessageRequestBody {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  message: string;
 }
