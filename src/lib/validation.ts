@@ -16,7 +16,7 @@ export const contactFormValidationSchema = z.object({
   phone: z
     .string()
     .trim()
-    .regex(/^\d{9}$/, "Telefone inválido"),
+    .regex(/^9\d{8}$/, "Telefone inválido"),
   message: z
     .string()
     .trim()
