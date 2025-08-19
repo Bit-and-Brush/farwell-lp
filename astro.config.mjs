@@ -24,6 +24,10 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: "compile",
   }),
+  prefetch: {
+    defaultStrategy: "viewport",
+    prefetchAll: true,
+  },
   env: {
     schema: {
       API_ENDPOINT: envField.string({
