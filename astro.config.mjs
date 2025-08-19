@@ -25,7 +25,7 @@ export default defineConfig({
     imageService: "compile",
   }),
   prefetch: {
-    defaultStrategy: "viewport",
+    defaultStrategy: "hover",
     prefetchAll: true,
   },
   env: {
