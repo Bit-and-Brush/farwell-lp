@@ -1,5 +1,5 @@
 ---
-import { getPageData } from "@/api";
+import { getPageDataWithLayoutData } from "@/api";
 import type { GetServicesPageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import GetStartedSection from "@/components/sections/services/get-started-section.astro";
@@ -7,14 +7,21 @@ import ServicesSection from "@/components/sections/services/services-section.ast
 import WhyOurServicesSection from "@/components/sections/services/why-our-services-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const servicesData = await getPageData<GetServicesPageDataResponse>("services");
+const [servicesData, headerData, footerData] =
+  await getPageDataWithLayoutData<GetServicesPageDataResponse>("services");
+const { areaClient, catalogFile } = headerData;
+const { services, description } = footerData;
 const { contact, header, ourServices, whyChooseOurServices } = servicesData;
-const servicesNames = ourServices.map(({ title }) => title);
 ---
 
 <MainLayout
   extendedTitle="Os Nossos Serviços"
-  footer={{ services: servicesNames }}
+  footer={{
+    services: services.map(({ title }) => title),
+    description,
+    // contacts: contact.map(({ fields: { value } }) => value) ?? [],
+  }}
+  headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
 >
   <main>
     <PageHero title={header.title} subtitle={header.description} />

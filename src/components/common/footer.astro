@@ -5,10 +5,11 @@ import { Heart } from "lucide-react";
 type Props = {
   description?: string;
   services: string[];
+  contacts: string[];
 };
 
 const year = new Date().getFullYear();
-const { description, services } = Astro.props;
+const { description, services, contacts } = Astro.props;
 ---
 
 <footer class="bg-secondary text-secondary-foreground py-12">
@@ -24,34 +25,23 @@ const { description, services } = Astro.props;
         {description}
       </p>
     </div>
-    {
-      services && services.length > 0 && (
-        <div>
+    <div>
+    {services && services.length > 0 && (
           <p class="text-background mb-4 font-bold">Serviços</p>
           <ul class="space-y-2 text-sm">
-            <li>Produtos farmacêuticos</li>
-            <li>Equipamento hospitalar</li>
-            <li>Equipamentos médicos</li>
-            <li>Produtos Laboratoriais</li>
+            {services.map((service) => (
+              <li>{service}</li>
+            ))}
           </ul>
-        </div>
-      )
-    }
+      )}
+    </div>
     <div>
-      <p class="text-background mb-4 font-bold">Contactos</p>
-      <ul class="space-y-2 text-sm">
-        <li>Luanda, Angola</li>
-        <li>
-          <a class="hover:underline" href="tel:+244 XXX XXX XXX">
-            + 244 XXX XXX
-          </a>
-        </li>
-        <li>
-          <a class="hover:underline" href="mailto:info@farwell.co.ao">
-            info@farwell.co.ao
-          </a>
-        </li>
-      </ul>
+      {contacts && contacts.length > 0  && (
+        <p class="text-background mb-4 font-bold">Contactos</p>
+        <ul class="space-y-2 text-sm">
+          {contacts.map((contact) => <li>{contact}</li>)}
+        </ul>
+      )}
     </div>
   </div>
   <div

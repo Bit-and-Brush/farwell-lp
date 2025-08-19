@@ -1,29 +1,27 @@
 ---
-import { getPageData } from "@/api";
-import type {
-  GetAboutPageDataResponse,
-  GetServicesPageDataResponse,
-} from "@/api/type";
+import { getPageDataWithLayoutData } from "@/api";
+import type { GetAboutPageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import KPISection from "@/components/sections/about/kpi-section.astro";
 import MissionAndVisionSection from "@/components/sections/about/mission-and-vision-section.astro";
 import WhyUsSection from "@/components/sections/about/why-us-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const [aboutPageData, servicesFooterList] = await Promise.all([
-  getPageData<GetAboutPageDataResponse>("about"),
-  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
-    _fields: "ourServices",
-  }),
-]);
+const [aboutPageData, headerData, footerData] =
+  await getPageDataWithLayoutData<GetAboutPageDataResponse>("about");
+const { areaClient, catalogFile } = headerData;
+const { services, description } = footerData;
 const { header, principles, whySection } = aboutPageData;
-const servicesNames =
-  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
 ---
 
 <MainLayout
   extendedTitle="Sobre a FARWELL"
-  footer={{ services: servicesNames }}
+  footer={{
+    services: services.map(({ title }) => title),
+    description,
+    // contacts: contact.map(({ fields: { value } }) => value) ?? [],
+  }}
+  headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
 >
   <main>
     <PageHero title={header.title} subtitle={header.description} />

@@ -1,4 +1,9 @@
 import { API_ENDPOINT } from "astro:env/server";
+import type {
+  GetCommonPageDataResponse,
+  GetFooterPageDataResponse,
+  SendMessageRequestBody,
+} from "./type";
 
 export const pageResources = {
   home: "/getHomeData",
@@ -7,6 +12,8 @@ export const pageResources = {
   services: "/getServiceData",
   contact: "/getContactData",
   distribution: "/getDistributionData",
+  common: "/getCommonData",
+  footer: "/getFooterData",
 } as const;
 
 /**
@@ -85,4 +92,16 @@ export async function sendMessage(data: SendMessageRequestBody) {
     throw new Error("Failed to send message");
   }
   return response.json();
+}
+
+export async function getPageDataWithLayoutData<Response>(
+  endpoint: keyof typeof pageResources,
+  params: Record<string, string | number | boolean> = {},
+): Promise<[Response, GetCommonPageDataResponse, GetFooterPageDataResponse]> {
+  const [pageBody, headerData, footerData] = await Promise.all([
+    getPageData<Response>(endpoint, params),
+    getPageData<GetCommonPageDataResponse>("common"),
+    getPageData<GetFooterPageDataResponse>("footer"),
+  ]);
+  return [pageBody, headerData, footerData];
 }

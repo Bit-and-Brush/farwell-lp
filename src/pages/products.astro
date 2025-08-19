@@ -1,28 +1,26 @@
 ---
-import { getPageData } from "@/api";
-import type {
-  GetProductPageDataResponse,
-  GetServicesPageDataResponse,
-} from "@/api/type";
+import { getPageDataWithLayoutData } from "@/api";
+import type { GetProductPageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import ProductsSection from "@/components/sections/products/products-section.astro";
 import QualityAssuranceSection from "@/components/sections/products/quality-assurance-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const [productsPageData, servicesFooterList] = await Promise.all([
-  getPageData<GetProductPageDataResponse>("products"),
-  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
-    _fields: "ourServices",
-  }),
-]);
+const [productsPageData, headerData, footerData] =
+  await getPageDataWithLayoutData<GetProductPageDataResponse>("products");
+const { areaClient, catalogFile } = headerData;
+const { services, description } = footerData;
 const { header, qualityAssurance } = productsPageData;
-const servicesNames =
-  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
 ---
 
 <MainLayout
   extendedTitle="Os Nossos Produtos"
-  footer={{ services: servicesNames }}
+  footer={{
+    services: services.map(({ title }) => title),
+    description,
+    // contacts: contact.map(({ fields: { value } }) => value) ?? [],
+  }}
+  headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
 >
   <main>
     <PageHero title={header.title} subtitle={header.description} />

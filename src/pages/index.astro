@@ -1,8 +1,9 @@
 ---
 import { getPageData } from "@/api";
 import type {
+  GetCommonPageDataResponse,
+  GetFooterPageDataResponse,
   GetHomePageDataResponse,
-  GetServicesPageDataResponse,
 } from "@/api/type";
 import ContactSection from "@/components/common/contact-section.astro";
 import AboutSection from "@/components/sections/home/about-section.astro";
@@ -10,18 +11,24 @@ import HomeHero from "@/components/sections/home/home-hero.astro";
 import ServicesSection from "@/components/sections/home/services-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const [homePageData, servicesFooterList] = await Promise.all([
+const [homePageData, headerData, footerData] = await Promise.all([
   getPageData<GetHomePageDataResponse>("home"),
-  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
-    _fields: "ourServices",
-  }),
+  getPageData<GetCommonPageDataResponse>("common"),
+  getPageData<GetFooterPageDataResponse>("footer"),
 ]);
 const { aboutUs, contactUs, hero, ourServices } = homePageData;
-const servicesNames =
-  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
+const { areaClient, catalogFile } = headerData;
+const { services, description } = footerData;
 ---
 
-<MainLayout footer={{ services: servicesNames }}>
+<MainLayout
+  footer={{
+    services: services.map(({ title }) => title),
+    description,
+    // contacts: contact.map(({ fields: { value } }) => value) ?? [],
+  }}
+  headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
+>
   <main>
     {hero && <HomeHero {...hero} />}
     {aboutUs && <AboutSection {...aboutUs} />}

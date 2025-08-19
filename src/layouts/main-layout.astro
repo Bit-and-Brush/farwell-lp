@@ -14,7 +14,8 @@ type Props = {
   };
   footer?: {
     description?: string;
-    services: string[];
+    services?: string[];
+    contacts?: string[];
   };
 };
 
@@ -45,6 +46,7 @@ const {
     />
     <slot />
     <Footer
+      contacts={footer?.contacts ?? []}
       description={footer?.description}
       services={footer?.services ?? []}
     />

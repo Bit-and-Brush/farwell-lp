@@ -183,6 +183,22 @@ interface WhySectionData {
   }[];
 }
 
+export interface GetContactPageDataResponse {
+  header: HeaderData;
+  contacts: Omit<ContactData, "title">[];
+}
+
+export interface GetCommonPageDataResponse {
+  catalogFile: string;
+  areaClient: string;
+}
+
+export interface GetFooterPageDataResponse {
+  services: { title: string }[];
+  contact: ContactData[];
+  description: string;
+}
+
 export interface SendMessageRequestBody {
   firstName: string;
   lastName: string;

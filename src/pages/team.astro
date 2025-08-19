@@ -1,20 +1,25 @@
 ---
-import { getPageData } from "@/api";
-import type { GetServicesPageDataResponse } from "@/api/type";
+import { getPageDataWithLayoutData } from "@/api";
+import type { GetHomePageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import TeamItem from "@/components/sections/team/team-item.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const [servicesFooterList] = await Promise.all([
-  getPageData<Pick<GetServicesPageDataResponse, "ourServices">>("services", {
-    _fields: "ourServices",
-  }),
-]);
-const servicesNames =
-  servicesFooterList.ourServices.map(({ title }) => title) ?? [];
+const [_, headerData, footerData] =
+  await getPageDataWithLayoutData<GetHomePageDataResponse>("home");
+const { areaClient, catalogFile } = headerData;
+const { services, description } = footerData;
 ---
 
-<MainLayout extendedTitle="Equipa" footer={{ services: servicesNames }}>
+<MainLayout
+  extendedTitle="Equipa"
+  footer={{
+    services: services.map(({ title }) => title),
+    description,
+    // contacts: contact.map(({ fields: { value } }) => value) ?? [],
+  }}
+  headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
+>
   <main>
     <PageHero
       title="A Nossa Equipa"
