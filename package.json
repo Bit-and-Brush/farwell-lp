@@ -3,11 +3,11 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "pnpm build && wrangler dev",
-    "dev:local": "astro dev",
+    "dev": "astro dev",
     "build": "astro build",
     "start:node": "node ./dist/server/entry.mjs",
-    "deploy:cloudflare": "pnpm build && wrangler deploy"
+    "build:node": "ADAPTER=node pnpm build",
+    "deploy:cloudflare": "ADAPTER=cloudflare pnpm build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.4",
