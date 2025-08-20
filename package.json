@@ -6,11 +6,12 @@
     "dev": "pnpm build && wrangler dev",
     "dev:local": "astro dev",
     "build": "astro build",
-    "start": "astro preview",
+    "start:node": "node ./dist/server/entry.mjs",
     "deploy:cloudflare": "pnpm build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.4",
+    "@astrojs/node": "^9.4.2",
     "@astrojs/react": "^4.3.0",
     "@astrojs/sitemap": "^3.5.0",
     "@fontsource/poppins": "^5.2.6",

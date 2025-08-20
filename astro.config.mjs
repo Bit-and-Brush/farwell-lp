@@ -1,5 +1,6 @@
 // @ts-check
 import cloudflare from "@astrojs/cloudflare";
+import node from "@astrojs/node";
 import react from "@astrojs/react";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
@@ -20,9 +21,14 @@ export default defineConfig({
     },
   },
   output: "server",
-  adapter: cloudflare({
-    imageService: "compile",
-  }),
+  adapter:
+    import.meta.env.ADAPTER === "cloudflare"
+      ? cloudflare({
+          imageService: "compile",
+        })
+      : node({
+          mode: "standalone",
+        }),
   prefetch: {
     defaultStrategy: "hover",
     prefetchAll: true,
@@ -33,6 +39,13 @@ export default defineConfig({
         context: "server",
         access: "public",
         optional: false,
+      }),
+      ADAPTER: envField.enum({
+        context: "server",
+        access: "public",
+        optional: true,
+        default: "cloudflare",
+        values: ["cloudflare", "node"],
       }),
     },
   },
