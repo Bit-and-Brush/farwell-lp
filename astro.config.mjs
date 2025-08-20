@@ -8,7 +8,7 @@ import { defineConfig, envField } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://farwell-lp.pages.dev",
+  site: "https://farwell.co.ao",
   integrations: [sitemap(), react()],
   vite: {
     plugins: [tailwindcss()],
