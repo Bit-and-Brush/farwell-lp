@@ -22,7 +22,7 @@ export default defineConfig({
   },
   output: "server",
   adapter:
-    import.meta.env.ADAPTER === "cloudflare"
+    process.env.ADAPTER === "cloudflare"
       ? cloudflare({
           imageService: "compile",
         })
@@ -39,13 +39,6 @@ export default defineConfig({
         context: "server",
         access: "public",
         optional: false,
-      }),
-      ADAPTER: envField.enum({
-        context: "server",
-        access: "public",
-        optional: true,
-        default: "cloudflare",
-        values: ["cloudflare", "node"],
       }),
     },
   },
