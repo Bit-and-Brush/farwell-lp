@@ -5,7 +5,10 @@ import { Heart } from "lucide-react";
 type Props = {
   description?: string;
   services: string[];
-  contacts: string[];
+  contacts:{
+      icon: string;
+      value: string;
+    }[];
 };
 
 const year = new Date().getFullYear();
@@ -39,7 +42,7 @@ const { description, services, contacts } = Astro.props;
       {contacts && contacts.length > 0  && (
         <p class="text-background mb-4 font-bold">Contactos</p>
         <ul class="space-y-2 text-sm">
-          {contacts.map((contact) => <li>{contact}</li>)}
+          {contacts.map(({value}) => <li>{value}</li>)}
         </ul>
       )}
     </div>

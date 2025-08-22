@@ -8,7 +8,7 @@ import MainLayout from "@/layouts/main-layout.astro";
 const [contactData, headerData, footerData] =
   await getPageDataWithLayoutData<GetContactPageDataResponse>("contact");
 const { areaClient, catalogFile } = headerData;
-const { services, description } = footerData;
+const { services, description, contact } = footerData;
 const { contacts, header } = contactData;
 ---
 
@@ -17,7 +17,8 @@ const { contacts, header } = contactData;
   footer={{
     services: services.map(({ title }) => title),
     description,
-    // contacts: contact.map(({ fields: { value } }) => value) ?? [],
+    contacts:
+      contact.map(({ fields: { value, icon } }) => ({ value, icon })) ?? [],
   }}
   headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
 >

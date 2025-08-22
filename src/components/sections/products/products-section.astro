@@ -1,7 +1,17 @@
 ---
 import CardItemWithBulletPoints from "@/components/common/card-item-with-bullet-points.astro";
 import SectionHeader from "@/components/common/section-header.astro";
-import { PackageIcon } from "lucide-react";
+
+type Props = {
+  products: {
+    title: string;
+    icon: string;
+    description: string;
+    bulletPoints: string[];
+  }[];
+};
+
+const { products } = Astro.props;
 ---
 
 <section class="container space-y-16 py-20">
@@ -11,33 +21,15 @@ import { PackageIcon } from "lucide-react";
     description="Soluções completas de distribuição farmacêutica, concebidas para cumprir os mais elevados padrões de qualidade, segurança e conformidade regulamentar."
   />
   <ul class="grid gap-8 md:grid-cols-2">
-    <CardItemWithBulletPoints
-      title="Produtos Farmacêuticos"
-      description="Medicamentos e materiais farmacêuticos de alta qualidade provenientes de marcas internacionais de confiança."
-      bulletPoints={["Vacinas", "Vacinas", "Vacinas", "Vacinas", "Vacinas"]}
-    >
-      <PackageIcon className="text-primary" size={24} slot="icon" />
-    </CardItemWithBulletPoints>
-    <CardItemWithBulletPoints
-      title="Produtos Farmacêuticos"
-      description="Medicamentos e materiais farmacêuticos de alta qualidade provenientes de marcas internacionais de confiança."
-      bulletPoints={["Vacinas", "Vacinas", "Vacinas", "Vacinas", "Vacinas"]}
-    >
-      <PackageIcon className="text-primary" size={24} slot="icon" />
-    </CardItemWithBulletPoints>
-    <CardItemWithBulletPoints
-      title="Produtos Farmacêuticos"
-      description="Medicamentos e materiais farmacêuticos de alta qualidade provenientes de marcas internacionais de confiança."
-      bulletPoints={["Vacinas", "Vacinas", "Vacinas", "Vacinas", "Vacinas"]}
-    >
-      <PackageIcon className="text-primary" size={24} slot="icon" />
-    </CardItemWithBulletPoints>
-    <CardItemWithBulletPoints
-      title="Produtos Farmacêuticos"
-      description="Medicamentos e materiais farmacêuticos de alta qualidade provenientes de marcas internacionais de confiança."
-      bulletPoints={["Vacinas", "Vacinas", "Vacinas", "Vacinas", "Vacinas"]}
-    >
-      <PackageIcon className="text-primary" size={24} slot="icon" />
-    </CardItemWithBulletPoints>
+    {
+      products.map(({ title, icon, description, bulletPoints }) => (
+        <CardItemWithBulletPoints
+          title={title}
+          description={description}
+          bulletPoints={bulletPoints}
+          iconUrl={icon}
+        />
+      ))
+    }
   </ul>
 </section>

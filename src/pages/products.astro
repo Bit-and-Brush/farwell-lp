@@ -9,8 +9,8 @@ import MainLayout from "@/layouts/main-layout.astro";
 const [productsPageData, headerData, footerData] =
   await getPageDataWithLayoutData<GetProductPageDataResponse>("products");
 const { areaClient, catalogFile } = headerData;
-const { services, description } = footerData;
-const { header, qualityAssurance } = productsPageData;
+const { services, description, contact } = footerData;
+const { header, qualityAssurance, products } = productsPageData;
 ---
 
 <MainLayout
@@ -18,14 +18,28 @@ const { header, qualityAssurance } = productsPageData;
   footer={{
     services: services.map(({ title }) => title),
     description,
-    // contacts: contact.map(({ fields: { value } }) => value) ?? [],
+    contacts:
+      contact.map(({ fields: { value, icon } }) => ({ value, icon })) ?? [],
   }}
   headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
 >
   <main>
     <PageHero title={header.title} subtitle={header.description} />
-    <!-- TODO: Missing data for the API -->
-    <ProductsSection />
+    {
+      products && products.length > 0 && (
+        <ProductsSection
+          products={products.map(
+            ({ fields: { bulletPoints, description, icon }, title }) => ({
+              title,
+              bulletPoints:
+                bulletPoints.map(({ description }) => description) ?? [],
+              description,
+              icon,
+            })
+          )}
+        />
+      )
+    }
     {
       qualityAssurance && (
         <QualityAssuranceSection

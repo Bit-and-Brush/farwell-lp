@@ -15,7 +15,10 @@ type Props = {
   footer?: {
     description?: string;
     services?: string[];
-    contacts?: string[];
+    contacts?: {
+      icon: string;
+      value: string;
+    }[];
   };
 };
 
