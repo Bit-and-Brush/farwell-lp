@@ -17,18 +17,21 @@ const {
 } = Astro.props;
 ---
 
-<section class="hero-gradient">
+<section class="primary-gradient text-background">
   <div class="container grid items-center gap-12 py-20 lg:grid-cols-2">
     <div class="space-y-6">
-      <h1 class="text-secondary text-3xl font-bold">
-        {title}<br /><span class="text-primary">{highlight}</span>
+      <h1 class="text-grey-950 text-3xl font-bold">
+        {title}<br /><span class="">{highlight}</span>
       </h1>
       <p class="text-lg">
         {description}
       </p>
       <div class="flex flex-col gap-4 md:flex-row">
-        <ButtonLink href={catalogUrl} download target="_blank"
-          >Ver Catálogo</ButtonLink
+        <ButtonLink
+          class="bg-background text-secondary"
+          href={catalogUrl}
+          download
+          target="_blank">Ver Catálogo</ButtonLink
         >
       </div>
       {
