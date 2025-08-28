@@ -15,7 +15,7 @@ const { title, description, areas, stats } = Astro.props;
 <section class="bg-grey-950/30">
   <div class="container py-20">
     <SectionHeader title={title} description={description} />
-    <div class="mx-auto mt-12 grid max-w-4xl gap-12 md:grid-cols-2">
+    <div class="mx-auto mt-12 grid max-w-4xl gap-12 md:grid-cols-2 items-start">
       {
         areas && areas.length > 0 && (
           <div class="space-y-6">
