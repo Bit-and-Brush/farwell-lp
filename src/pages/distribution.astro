@@ -43,7 +43,10 @@ const {
               title,
               iconUrl: icon,
               description,
-              bulletPoints: bulletPoints.map(({ description }) => description),
+              bulletPoints:
+                typeof bulletPoints === "object"
+                  ? bulletPoints?.map(({ description }) => description)
+                  : [],
             })
           )}
         />

@@ -25,7 +25,7 @@ const { title, description, services } = Astro.props;
           <CardItemWithBulletPoints
             title={title}
             description={description}
-            bulletPoints={bulletPoints ?? []}
+            bulletPoints={bulletPoints || []}
             iconUrl={iconUrl}
           />
         ))}

@@ -76,9 +76,11 @@ export interface ProductData {
 interface FieldsWithBulletPointsData {
   icon: string;
   description: string;
-  bulletPoints: {
-    description: string;
-  }[];
+  bulletPoints:
+    | {
+        description: string;
+      }[]
+    | boolean;
 }
 
 export interface QualityAssuranceData {
