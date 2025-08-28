@@ -31,7 +31,7 @@ const { services, description, contact } = footerData;
   headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
 >
   <main>
-    {hero && <HomeHero {...hero} />}
+    {hero && <HomeHero {...hero} catalogUrl={catalogFile} />}
     {aboutUs && <AboutSection {...aboutUs} />}
     {ourServices && <ServicesSection {...ourServices} />}
     {contactUs && <ContactSection {...contactUs} isHomePage />}

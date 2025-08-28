@@ -25,7 +25,12 @@ const { catalogUrl, clientAreaUrl } = Astro.props;
       <div class="flex items-center gap-6 text-sm max-lg:hidden">
         {
           catalogUrl && (
-            <ButtonLink title="Ver Catálogo" download href={catalogUrl}>
+            <ButtonLink
+              title="Ver Catálogo"
+              download
+              target="_blank"
+              href={catalogUrl}
+            >
               <BookIcon />
               <span class="max-xl:hidden">Ver Catálogo</span>
             </ButtonLink>

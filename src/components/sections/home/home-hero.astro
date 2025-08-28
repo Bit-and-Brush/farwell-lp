@@ -3,7 +3,9 @@ import type { HeroData } from "@/api/type";
 import ButtonLink from "@/components/common/button-link.astro";
 import { Image } from "astro:assets";
 
-type Props = Partial<HeroData>;
+type Props = Partial<HeroData> & {
+  catalogUrl?: string;
+};
 
 const {
   description,
@@ -11,6 +13,7 @@ const {
   image: imageUrl,
   keyValue,
   title,
+  catalogUrl: catalogUrl,
 } = Astro.props;
 ---
 
@@ -24,7 +27,9 @@ const {
         {description}
       </p>
       <div class="flex flex-col gap-4 md:flex-row">
-        <ButtonLink href="/products">Nossos produtos</ButtonLink>
+        <ButtonLink href={catalogUrl} download target="_blank"
+          >Ver Catálogo</ButtonLink
+        >
       </div>
       {
         keyValue && (
