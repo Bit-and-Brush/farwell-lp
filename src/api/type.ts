@@ -57,20 +57,9 @@ interface ContactData {
   };
 }
 
-export interface GetProductPageDataResponse {
-  header: HeaderData;
-  products: ProductData[];
-  qualityAssurance: QualityAssuranceData;
-}
-
 export interface HeaderData {
   title: string;
   description: string;
-}
-
-export interface ProductData {
-  title: string;
-  fields: FieldsWithBulletPointsData;
 }
 
 interface FieldsWithBulletPointsData {

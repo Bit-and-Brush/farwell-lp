@@ -7,7 +7,6 @@ import type {
 
 export const pageResources = {
   home: "/getHomeData",
-  products: "/getProductsData",
   about: "/getAboutData",
   services: "/getServiceData",
   contact: "/getContactData",
