@@ -19,14 +19,6 @@ export const ROUTES = [
     href: "/diagnostics",
   },
   {
-    text: "Serviços",
-    href: "/services",
-  },
-  {
-    text: "Produtos",
-    href: "/products",
-  },
-  {
     text: "Contactos",
     href: "/contact",
   },
