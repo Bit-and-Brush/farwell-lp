@@ -49,7 +49,12 @@ const { catalogUrl, clientAreaUrl } = Astro.props;
           )
         }
       </div>
-      <MobileNavMenu client:visible pathname={Astro.url.pathname} />
+      <MobileNavMenu
+        client:visible
+        pathname={Astro.url.pathname}
+        catalogUrl={catalogUrl}
+        clientAreaUrl={clientAreaUrl}
+      />
     </div>
   </div>
 </header>
