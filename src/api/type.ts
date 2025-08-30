@@ -87,6 +87,7 @@ export interface GetDistributionPageDataResponse {
   ourDistributionServices: OurDistributionServicesData;
   areaCoverage: AreaCoverageData;
   qualityAndComplianceStandards: QualityAndComplianceStandardsData;
+  whyChooseOurServices: WhyChooseOurServicesData;
 }
 
 interface OurDistributionServicesData {
@@ -116,19 +117,6 @@ interface QualityAndComplianceStandardsData {
     title: string;
     description: string;
   }[];
-}
-
-export interface GetServicesPageDataResponse {
-  header: HeaderData;
-  ourServices: OurServiceData[];
-  whyChooseOurServices: WhyChooseOurServicesData;
-  contact: ContactDataService;
-}
-
-interface OurServiceData {
-  id: number;
-  title: string;
-  fields: ExtendedFieldData;
 }
 
 interface ExtendedFieldData {

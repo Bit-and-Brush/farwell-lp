@@ -8,7 +8,6 @@ import type {
 export const pageResources = {
   home: "/getHomeData",
   about: "/getAboutData",
-  services: "/getServiceData",
   contact: "/getContactData",
   distribution: "/getDistributionData",
   common: "/getCommonData",
