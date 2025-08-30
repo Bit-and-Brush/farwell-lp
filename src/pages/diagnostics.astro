@@ -1,18 +1,22 @@
 ---
 import { getPageDataWithLayoutData } from "@/api";
-import type { GetHomePageDataResponse } from "@/api/type";
+import type { GetDiagnosticsPageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
+import ProsedContent from "@/components/common/prosed-content.astro";
 import MainSection from "@/components/sections/diagnostics/main-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const [_, headerData, footerData] =
-  await getPageDataWithLayoutData<GetHomePageDataResponse>("home");
+const [diagnosticsData, headerData, footerData] =
+  await getPageDataWithLayoutData<GetDiagnosticsPageDataResponse>(
+    "diagnostics"
+  );
 const { areaClient, catalogFile } = headerData;
 const { services, description, contact } = footerData;
+const { clientSection, header } = diagnosticsData;
 ---
 
 <MainLayout
-  extendedTitle="Diagnosticos"
+  extendedTitle={header.title}
   footer={{
     services: services.map(({ title }) => title),
     description,
@@ -22,27 +26,18 @@ const { services, description, contact } = footerData;
   headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
 >
   <main>
-    <PageHero
-      title="Diagnosticos"
-      subtitle="Venda e fornecimento de reagentes de diagnóstico in vitro, equipamentos e todos os consumíveis necessários para laboratórios de análises clínicas."
-    />
+    <PageHero title={header.title} subtitle={header.description} />
     <MainSection />
     <section class="bg-grey-950/30">
       <div class="container mx-auto max-w-4xl space-y-6 py-20 text-center">
-        <h2 class="text-secondary text-4xl leading-10">Os Nossos Clientes</h2>
+        <h2 class="text-secondary text-4xl leading-10">
+          {clientSection.title}
+        </h2>
         <hr class="text-primary mx-auto h-1 w-24" />
         <p class="text-primary text-2xl leading-8">
-          » Uma referência no mercado de laboratórios clínicos
+          {clientSection.subtitle}
         </p>
-        <p class="text-lg leading-7">
-          O nosso foco crescente nesta área e a contínua especialização
-          resultaram na aquisição de clientes de prestígio, aos quais a Farwell
-          fornece regularmente.
-        </p>
-        <p class="text-lg leading-7">
-          O nosso portefólio de clientes inclui laboratórios privados, bem como
-          entidades públicas.
-        </p>
+        <ProsedContent content={clientSection.descripiton} />
       </div>
     </section>
   </main>
