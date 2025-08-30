@@ -150,6 +150,7 @@ export interface GetAboutPageDataResponse {
     values: string;
   };
   whySection: WhySectionData;
+  qualityAssurance: QualityAssuranceData;
 }
 
 interface WhySectionData {
