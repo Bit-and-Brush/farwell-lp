@@ -12,6 +12,7 @@ export const pageResources = {
   distribution: "/getDistributionData",
   common: "/getCommonData",
   footer: "/getFooterData",
+  team: "/getOurTeamData",
 } as const;
 
 /**

@@ -186,3 +186,12 @@ export interface SendMessageRequestBody {
   phone: string;
   message: string;
 }
+
+export interface GetTeamPageDataResponse {
+  header: HeaderData;
+  ourTeam: {
+    image: string;
+    name: string;
+    role: string;
+  }[];
+}
