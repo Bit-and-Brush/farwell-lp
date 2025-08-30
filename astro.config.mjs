@@ -10,6 +10,9 @@ import { defineConfig, envField } from "astro/config";
 export default defineConfig({
   site: "https://farwell.co.ao",
   integrations: [sitemap(), react()],
+  image: {
+    domains: ["cms.farwell.co.ao"],
+  },
   vite: {
     plugins: [tailwindcss()],
     resolve: {
