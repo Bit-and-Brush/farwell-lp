@@ -1,0 +1,15 @@
+---
+import { cn, sanitizeHTMLFromCMS } from "@/lib/utils";
+
+type Props = {
+  content: string;
+  className?: string;
+};
+
+const { content, className } = Astro.props;
+---
+
+<div
+  set:html={sanitizeHTMLFromCMS(content)}
+  class={cn("prose max-w-none text-lg prose-p:leading-7", className)}
+/>
