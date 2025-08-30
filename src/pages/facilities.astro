@@ -1,18 +1,19 @@
 ---
 import { getPageDataWithLayoutData } from "@/api";
-import type { GetHomePageDataResponse } from "@/api/type";
+import type { GetFacilitiesPageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import FeaturesSection from "@/components/sections/facilities/features-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const [_, headerData, footerData] =
-  await getPageDataWithLayoutData<GetHomePageDataResponse>("home");
+const [facilitiesData, headerData, footerData] =
+  await getPageDataWithLayoutData<GetFacilitiesPageDataResponse>("facilities");
 const { areaClient, catalogFile } = headerData;
 const { services, description, contact } = footerData;
+const { facilitiesSection, header } = facilitiesData;
 ---
 
 <MainLayout
-  extendedTitle="Instalações"
+  extendedTitle={header.title}
   footer={{
     services: services.map(({ title }) => title),
     description,
@@ -22,27 +23,20 @@ const { services, description, contact } = footerData;
   headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
 >
   <main>
-    <PageHero
-      title="As Nossas Instalações"
-      subtitle="Operamos instalações modernas e em conformidade, para garantir uma distribuição segura e eficiente em todo o território de Angola e além."
-    />
-    <FeaturesSection />
-    <section class="container mt-10 mb-12 space-y-4">
-      <h2 class="text-secondary text-xl font-bold">Capacidades</h2>
-      <ul class="grid grid-cols-1 gap-2 lg:grid-cols-2">
-        <li class="text-sm">
-          Armazenamento e transporte com controlo de temperatura
-        </li>
-        <li class="text-sm">
-          Armazenamento e transporte com controlo de temperatura
-        </li>
-        <li class="text-sm">
-          Armazenamento e transporte com controlo de temperatura
-        </li>
-        <li class="text-sm">
-          Armazenamento e transporte com controlo de temperatura
-        </li>
-      </ul>
-    </section>
+    <PageHero title={header.title} subtitle={header.description} />
+    <FeaturesSection facilities={facilitiesSection.facilities ?? []} />
+    {
+      facilitiesSection.capabilities &&
+        facilitiesSection.capabilities.length > 0 && (
+          <section class="container mt-10 mb-12 space-y-4">
+            <h2 class="text-secondary text-xl font-bold">Capacidades</h2>
+            <ul class="grid grid-cols-1 gap-2 lg:grid-cols-2">
+              {facilitiesSection.capabilities.map(({ text }) => (
+                <li class="text-sm">{text}</li>
+              ))}
+            </ul>
+          </section>
+        )
+    }
   </main>
 </MainLayout>

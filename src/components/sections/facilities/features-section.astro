@@ -1,9 +1,18 @@
 ---
 import FacilityFeatureItem from "./facility-feature-item.astro";
+
+type Props = {
+  facilities: {
+    icon: string;
+    title: string;
+    description: string;
+  }[];
+};
+const { facilities } = Astro.props;
 ---
 
 <section class="container my-10 lg:py-16">
   <ul class="grid grid-cols-1 gap-6 lg:grid-cols-3">
-    {Array.from({ length: 5 }).map(() => <FacilityFeatureItem />)}
+    {facilities.map((facility) => <FacilityFeatureItem {...facility} />)}
   </ul>
 </section>

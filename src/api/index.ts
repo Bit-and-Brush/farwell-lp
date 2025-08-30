@@ -14,6 +14,7 @@ export const pageResources = {
   footer: "/getFooterData",
   team: "/getOurTeamData",
   diagnostics: "/getOurDiagnosticData",
+  facilities: "/getOurInstalationsData",
 } as const;
 
 /**

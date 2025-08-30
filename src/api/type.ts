@@ -204,3 +204,17 @@ export interface GetDiagnosticsPageDataResponse {
     descripiton: string;
   };
 }
+
+export interface GetFacilitiesPageDataResponse {
+  header: HeaderData;
+  facilitiesSection: {
+    facilities: Array<{
+      icon: string;
+      title: string;
+      description: string;
+    }>;
+    capabilities: Array<{
+      text: string;
+    }>;
+  };
+}
