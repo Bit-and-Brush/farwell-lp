@@ -195,3 +195,12 @@ export interface GetTeamPageDataResponse {
     role: string;
   }[];
 }
+
+export interface GetDiagnosticsPageDataResponse {
+  header: HeaderData;
+  clientSection: {
+    title: string;
+    subtitle: string;
+    descripiton: string;
+  };
+}

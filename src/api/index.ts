@@ -13,6 +13,7 @@ export const pageResources = {
   common: "/getCommonData",
   footer: "/getFooterData",
   team: "/getOurTeamData",
+  diagnostics: "/getOurDiagnosticData",
 } as const;
 
 /**
