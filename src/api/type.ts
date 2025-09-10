@@ -88,6 +88,7 @@ export interface GetDistributionPageDataResponse {
   areaCoverage: AreaCoverageData;
   qualityAndComplianceStandards: QualityAndComplianceStandardsData;
   whyChooseOurServices: WhyChooseOurServicesData;
+  brands: Brand[];
 }
 
 interface OurDistributionServicesData {
@@ -217,4 +218,9 @@ export interface GetFacilitiesPageDataResponse {
       text: string;
     }>;
   };
+}
+
+interface Brand {
+  logo: string;
+  brandName: string;
 }

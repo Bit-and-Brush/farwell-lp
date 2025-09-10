@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+
+type Props = {
+  brands: {
+    logo: string;
+    brandName: string;
+  }[];
+};
+
+const { brands } = Astro.props;
+---
+
+<div class="mt-16 mb-12 space-y-6 rounded-xl border p-6">
+  <h3 class="text-secondary text-2xl leading-8">Marcas Certificadas</h3>
+  <p>A Farwell representa várias marcas certificadas, incluindo:</p>
+  <ul class="flex flex-wrap items-center justify-center gap-12">
+    {
+      brands.map(({ brandName, logo }) => (
+        <li>
+          <Image
+            src={logo}
+            alt={brandName}
+            width={72}
+            height={72}
+            loading="lazy"
+            class="object-cover"
+          />
+        </li>
+      ))
+    }
+  </ul>
+</div>

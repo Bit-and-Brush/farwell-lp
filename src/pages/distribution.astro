@@ -1,6 +1,7 @@
 ---
 import { getPageDataWithLayoutData } from "@/api";
 import type { GetDistributionPageDataResponse } from "@/api/type";
+import BrandsSection from "@/components/common/brands-section.astro";
 import PageHero from "@/components/common/page-hero.astro";
 import CoverageSection from "@/components/sections/distribution/coverage-section.astro";
 import DistributionServicesSection from "@/components/sections/distribution/distribution-services-section.astro";
@@ -20,6 +21,7 @@ const {
   ourDistributionServices,
   qualityAndComplianceStandards,
   whyChooseOurServices,
+  brands,
 } = distributionData;
 ---
 
@@ -92,6 +94,13 @@ const {
             })
           )}
         />
+      )
+    }
+    {
+      brands && brands.length > 0 && (
+        <div class="container max-w-6xl">
+          <BrandsSection brands={brands} />
+        </div>
       )
     }
   </main>
