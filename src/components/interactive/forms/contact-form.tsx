@@ -49,7 +49,7 @@ export default function ContactForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="bg-background space-y-4 rounded-xl border p-6 shadow-xs"
+        className="bg-background space-y-4 rounded-xl border p-6 shadow-xs h-fit"
       >
         <>
           <h3 className="text-secondary mb-2 text-2xl font-bold">
