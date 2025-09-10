@@ -11,7 +11,6 @@ const {
   description,
   highlight,
   image: imageUrl,
-  keyValue,
   title,
   catalogUrl: catalogUrl,
 } = Astro.props;
@@ -34,24 +33,6 @@ const {
           target="_blank">Ver Catálogo</ButtonLink
         >
       </div>
-      {
-        keyValue && (
-          <ul class="flex items-center justify-between pt-6 text-center text-xs">
-            {keyValue.map(({ image, label }) => (
-              <li class="flex flex-col items-center space-y-2">
-                <Image
-                  width={32}
-                  height={32}
-                  alt=""
-                  loading="eager"
-                  src={image}
-                />
-                <p>{label}</p>
-              </li>
-            ))}
-          </ul>
-        )
-      }
     </div>
     {
       imageUrl && (
@@ -60,7 +41,7 @@ const {
           height={322}
           alt=""
           src={imageUrl}
-          class="shadow-primary/30 rounded-xl object-cover shadow-lg"
+          class="shadow-primary/60 rounded-xl object-cover shadow-lg"
           loading="eager"
           fetchpriority="high"
         />
