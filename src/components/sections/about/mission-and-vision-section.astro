@@ -1,4 +1,6 @@
 ---
+import ProsedContent from "@/components/common/prosed-content.astro";
+
 type Props = Partial<{
   mission: string;
   vision: string;
@@ -13,34 +15,38 @@ const { mission, vision, values } = Astro.props;
   id="mission"
   class="container grid items-start gap-12 py-20 lg:grid-cols-3"
 >
-  <div>
-    <h2 class="text-secondary mb-6 text-2xl leading-9 font-bold">
-      A Nossa Missão
-    </h2>
-    <p class="leading-6">
-      {mission}
-    </p>
-  </div>
-  <div class="bg-grey-950/30 rounded-xl p-8">
-    <h2 class="text-secondary mb-6 text-2xl leading-9 font-bold">
-      A Nossa Visão
-    </h2>
-    <p class="leading-6">
-      {vision}
-    </p>
-  </div>
-  <div class="bg-grey-950/30 rounded-xl p-8">
-    <h2 class="text-secondary mb-6 text-2xl leading-9 font-bold">
-      A Nossa Proposta de Valor
-    </h2>
-    <ul class="list-disc space-y-3">
-      <li>
-        Cobertura de distribuição de ponta a ponta em todo o território de
-        Angola
-      </li>
-      <li>Rigor na qualidade e conformidade com padrões internacionais</li>
-      <li>Entregas fiáveis e pontuais com capacidade de cadeia de frio</li>
-      <li>Abordagem de parceria com apoio e formação personalizados</li>
-    </ul>
-  </div>
+  {
+    mission && (
+      <div>
+        <h2 class="text-secondary mb-6 text-2xl leading-9 font-bold">
+          A Nossa Missão
+        </h2>
+
+        <ProsedContent className="text-base" content={mission} />
+      </div>
+    )
+  }
+  {
+    vision && (
+      <div class="bg-grey-950/30 rounded-xl p-8">
+        <h2 class="text-secondary mb-6 text-2xl leading-9 font-bold">
+          A Nossa Visão
+        </h2>
+        <ProsedContent className="text-base" content={vision} />
+      </div>
+    )
+  }
+  {
+    values && (
+      <div class="bg-grey-950/30 rounded-xl p-8">
+        <h2 class="text-secondary mb-6 text-2xl leading-9 font-bold">
+          A Nossa Proposta de Valor
+        </h2>
+        <ProsedContent
+          content={values}
+          className="text-base prose-ul:list-disc prose-ul:space-y-3 marker:text-primary"
+        />
+      </div>
+    )
+  }
 </section>
