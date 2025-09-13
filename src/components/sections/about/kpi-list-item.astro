@@ -1,13 +1,17 @@
 ---
+import { Image } from "astro:assets";
+
 type Props = {
   metric: string;
   label: string;
+  imageURL?: string;
 };
 
-const { metric, label } = Astro.props;
+const { metric, label, imageURL } = Astro.props;
 ---
 
 <li class="flex flex-col items-center text-center">
+  {imageURL && <Image src={imageURL} alt={label} width={48} height={48} />}
   <slot name="icon" />
   <p class="text-secondary mt-4 mb-2 text-2xl leading-9 font-bold">{metric}</p>
   <p class="text-sm">{label}</p>

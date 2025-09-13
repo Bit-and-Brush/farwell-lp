@@ -36,7 +36,7 @@ const { header, principles, whySection, qualityAssurance } = aboutPageData;
       whySection && (
         <WhyUsSection
           title={whySection.title}
-          keyPoints={whySection.keyValues.map(
+          keyPoints={whySection.services.map(
             ({ description, icon, title }) => ({
               description,
               title,
@@ -55,7 +55,12 @@ const { header, principles, whySection, qualityAssurance } = aboutPageData;
         ...rest,
       }))}
     />
-    <!-- TODO: Missing API data -->
-    <KPISection />
+    <KPISection
+      keyPoints={whySection.keyValues.map(({ description, icon, title }) => ({
+        description,
+        title,
+        iconUrl: icon,
+      }))}
+    />
   </main>
 </MainLayout>

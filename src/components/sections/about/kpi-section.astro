@@ -1,21 +1,23 @@
 ---
-import { AwardIcon, ClockIcon, GlobeIcon, UsersIcon } from "lucide-react";
 import KpiListItem from "./kpi-list-item.astro";
+
+type Props = {
+  keyPoints: {
+    iconUrl?: string;
+    title: string;
+    description: string;
+  }[];
+};
+
+const { keyPoints } = Astro.props;
 ---
 
 <ul
   class="container grid items-center gap-8 py-20 md:grid-cols-2 lg:grid-cols-4"
 >
-  <KpiListItem metric="+500" label="Parceiros de Saúde">
-    <UsersIcon slot="icon" size={48} className="text-primary" />
-  </KpiListItem>
-  <KpiListItem metric="+20" label="Anos de Excelência">
-    <AwardIcon slot="icon" size={48} className="text-primary" />
-  </KpiListItem>
-  <KpiListItem metric="18" label="Províncias Abrangidas">
-    <GlobeIcon slot="icon" size={48} className="text-primary" />
-  </KpiListItem>
-  <KpiListItem metric="24/7" label="Apoio ao Cliente">
-    <ClockIcon slot="icon" size={48} className="text-primary" />
-  </KpiListItem>
+  {
+    keyPoints.map(({ description, title, iconUrl }) => (
+      <KpiListItem metric={title} label={description} imageURL={iconUrl} />
+    ))
+  }
 </ul>

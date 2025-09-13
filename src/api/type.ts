@@ -137,12 +137,6 @@ interface WhyChooseOurServicesData {
   }[];
 }
 
-interface ContactDataService {
-  title: string;
-  description: string;
-  contacts: ContactData[];
-}
-
 export interface GetAboutPageDataResponse {
   header: HeaderData;
   principles: {
@@ -157,6 +151,11 @@ export interface GetAboutPageDataResponse {
 interface WhySectionData {
   title: string;
   description: string;
+  services: {
+    icon: string;
+    title: string;
+    description: string;
+  }[];
   keyValues: {
     icon: string;
     title: string;
