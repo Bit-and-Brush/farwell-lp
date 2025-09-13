@@ -12,7 +12,8 @@ const [diagnosticsData, headerData, footerData] =
   );
 const { areaClient, catalogFile } = headerData;
 const { services, description, contact } = footerData;
-const { clientSection, header } = diagnosticsData;
+const { clientSection, header, brandsAndProducts, diagnostics } =
+  diagnosticsData;
 ---
 
 <MainLayout
@@ -27,7 +28,10 @@ const { clientSection, header } = diagnosticsData;
 >
   <main>
     <PageHero title={header.title} subtitle={header.description} />
-    <MainSection />
+    <MainSection
+      brandsAndProducts={brandsAndProducts}
+      diagnostics={diagnostics}
+    />
     <section class="bg-grey-950/30">
       <div class="container mx-auto max-w-4xl space-y-6 py-20 text-center">
         <h2 class="text-secondary text-4xl leading-10">

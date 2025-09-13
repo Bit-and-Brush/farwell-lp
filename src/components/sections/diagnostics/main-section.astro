@@ -1,39 +1,59 @@
 ---
+import type { GetDiagnosticsPageDataResponse } from "@/api/type";
 import BrandsSection from "@/components/common/brands-section.astro";
-import { PowerIcon } from "lucide-react";
+import { Image } from "astro:assets";
+
+type Props = Pick<
+  GetDiagnosticsPageDataResponse,
+  "brandsAndProducts" | "diagnostics"
+>;
+
+const { brandsAndProducts, diagnostics } = Astro.props;
 ---
 
 <section class="container max-w-6xl pt-24">
   <div class="space-y-6 text-center">
     <h2 class="text-secondary text-4xl leading-10 font-semibold">
-      Os Nossos Produtos e Marcas
+      {brandsAndProducts.title}
     </h2>
     <hr class="text-primary mx-auto h-1 w-24" />
     <p class="text-primary text-2xl leading-8">
-      » Soluções completas e de alta qualidade
+      {brandsAndProducts.subtitle}
     </p>
     <p class="text-lg leading-7">
-      O nosso objetivo é fornecer soluções completas para equipamentos de
-      laboratórios de análises clínicas.
+      {brandsAndProducts.description}
     </p>
   </div>
-  <BrandsSection brands={[]} />
+  <BrandsSection
+    brands={brandsAndProducts.brandSection.brands.map(
+      ({ logo, brandName }) => ({ brandName, logo: logo || "" })
+    ) ?? []}
+  />
   <div class="mt-12 mb-44 space-y-8">
     <h2 class="text-secondary text-center text-2xl leading-8">
-      Área de Análises Clínicas
+      {diagnostics.title}
     </h2>
     <p class="text-center text-lg leading-7">
-      Oferecemos equipamentos de alta qualidade e fiabilidade nas principais
-      áreas de análises clínicas:
+      {diagnostics.description}
     </p>
     <ul class="grid grid-cols-1 gap-6 md:grid-cols-3">
       {
-        Array.from({ length: 7 }).map(() => (
-          <li class="hover:bg-primary/20 space-y-4 rounded-xl border p-6 text-center duration-300 hover:scale-105">
-            <PowerIcon className="mx-auto" size={48} />
-            <p>Análise Clínica</p>
-          </li>
-        ))
+        diagnostics.diagnostics &&
+          diagnostics.diagnostics.map(
+            ({ name, icon }) =>
+              icon && (
+                <li class="hover:bg-primary/20 space-y-4 rounded-xl border p-6 text-center duration-300 hover:scale-105">
+                  <Image
+                    src={icon}
+                    alt={name}
+                    class="mx-auto"
+                    width={48}
+                    height={48}
+                  />
+                  <p>{name}</p>
+                </li>
+              )
+          )
       }
     </ul>
   </div>

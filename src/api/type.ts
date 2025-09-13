@@ -204,6 +204,27 @@ export interface GetDiagnosticsPageDataResponse {
     subtitle: string;
     descripiton: string;
   };
+  brandsAndProducts: {
+    title: string;
+    description: string;
+    subtitle: string;
+    brandSection: {
+      title: string;
+      subtitle: string;
+      brands: Array<{
+        logo?: string;
+        brandName: string;
+      }>;
+    };
+  };
+  diagnostics: {
+    title: string;
+    description: string;
+    diagnostics: Array<{
+      icon?: string;
+      name: string;
+    }>;
+  };
 }
 
 export interface GetFacilitiesPageDataResponse {
