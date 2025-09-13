@@ -15,6 +15,7 @@ export const pageResources = {
   team: "/getOurTeamData",
   diagnostics: "/getOurDiagnosticData",
   facilities: "/getOurInstalationsData",
+  qualityPolicy: "/getQualityPolicyData",
 } as const;
 
 /**

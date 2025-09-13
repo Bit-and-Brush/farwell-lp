@@ -1,17 +1,21 @@
 ---
 import { getPageDataWithLayoutData } from "@/api";
-import type { GetHomePageDataResponse } from "@/api/type";
+import type { GetQualityPolicyPageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
+import ProsedContent from "@/components/common/prosed-content.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
-const [_, headerData, footerData] =
-  await getPageDataWithLayoutData<GetHomePageDataResponse>("home");
+const [qualityPolicyData, headerData, footerData] =
+  await getPageDataWithLayoutData<GetQualityPolicyPageDataResponse>(
+    "qualityPolicy"
+  );
 const { areaClient, catalogFile } = headerData;
 const { services, description, contact } = footerData;
+const { header, qualityPolicyContent } = qualityPolicyData;
 ---
 
 <MainLayout
-  extendedTitle="Política de Qualidade"
+  extendedTitle={header.title}
   footer={{
     services: services.map(({ title }) => title),
     description,
@@ -21,102 +25,10 @@ const { services, description, contact } = footerData;
   headerLinks={{ catalog: catalogFile, clientArea: areaClient }}
 >
   <main>
-    <PageHero
-      title="Política de Qualidade"
-      subtitle="Um distribuidor sob a legislação angolana há mais de 20 anos"
+    <PageHero title={header.title} subtitle={header.description} />
+    <ProsedContent
+      className="prose-p:leading-6 prose-h3:text-secondary prose-h3:text-2xl prose-h3:font-bold marker:text-primary container max-w-4xl space-y-8 py-10 text-base lg:py-16"
+      content={qualityPolicyContent}
     />
-    <section class="container max-w-4xl space-y-8 py-10 lg:py-16">
-      <p class="leading-6">
-        Todas as atividades relacionadas com os produtos comercializados,
-        incluindo aquisição junto de fornecedores, armazenamento, distribuição,
-        logística, exportação, apoio pós-venda e a Política de Qualidade, são
-        orientadas pelos seguintes princípios:
-      </p>
-      <div class="space-y-3">
-        <h3 class="text-secondary text-2xl font-bold">Foco no Cliente</h3>
-        <p class="leading-6">
-          A Farwell está comprometida em garantir a distribuição de produtos
-          seguros e eficazes, bem como a prestação de serviços de excelência,
-          com o objetivo de assegurar a máxima satisfação dos clientes e partes
-          interessadas, em total conformidade com as leis e regulamentos
-          aplicáveis.
-        </p>
-      </div>
-      <div class="space-y-3">
-        <h3 class="text-secondary text-2xl font-bold">
-          Abordagem baseada em Processos e na Gestão de Riscos
-        </h3>
-        <p class="leading-6">
-          A Farwell identifica os seus processos principais e está comprometida
-          em melhorá-los continuamente através das seguintes áreas:
-        </p>
-        <ul class="list-inside list-disc space-y-2">
-          <li>
-            Definição de objetivos e monitorização e controlo de resultados
-          </li>
-          <li>Responsabilidades e definição de recursos</li>
-          <li>Identificação, avaliação e mitigação de riscos</li>
-          <li>Defining opportunities</li>
-        </ul>
-      </div>
-      <div class="space-y-3">
-        <h3 class="text-secondary text-2xl font-bold">Liderança</h3>
-        <p class="leading-6">
-          A Farwell está comprometida em garantir a distribuição de produtos
-          seguros e eficazes, bem como a prestação de serviços de excelência,
-          com o objetivo de assegurar a máxima satisfação dos clientes e partes
-          interessadas, em total conformidade com as leis e regulamentos
-          aplicáveis.
-        </p>
-        <p class="leading-6">
-          A Farwell está comprometida em garantir a distribuição de produtos
-          seguros e eficazes, bem como a prestação de serviços de excelência,
-          com o objetivo de assegurar a máxima satisfação dos clientes e partes
-          interessadas, em total conformidade com as leis e regulamentos
-          aplicáveis.
-        </p>
-      </div>
-      <div class="space-y-3">
-        <h3 class="text-secondary text-2xl font-bold">
-          Compromisso dos Colaboradores e das Partes Interessadas
-        </h3>
-        <p class="leading-6">
-          A Farwell está comprometida em garantir a distribuição de produtos
-          seguros e eficazes, bem como a prestação de serviços de excelência,
-          com o objetivo de assegurar a máxima satisfação dos clientes e partes
-          interessadas, em total conformidade com as leis e regulamentos
-          aplicáveis.
-        </p>
-        <p class="leading-6">
-          A Farwell está comprometida em garantir a distribuição de produtos
-          seguros e eficazes, bem como a prestação de serviços de excelência,
-          com o objetivo de assegurar a máxima satisfação dos clientes e partes
-          interessadas, em total conformidade com as leis e regulamentos
-          aplicáveis.
-        </p>
-        <p class="leading-6">
-          A Farwell está comprometida em garantir a distribuição de produtos
-          seguros e eficazes, bem como a prestação de serviços de excelência,
-          com o objetivo de assegurar a máxima satisfação dos clientes e partes
-          interessadas, em total conformidade com as leis e regulamentos
-          aplicáveis.
-        </p>
-      </div>
-      <div class="space-y-3">
-        <h3 class="text-secondary text-2xl font-bold">Melhoria Contínua</h3>
-        <p class="leading-6">
-          A Farwell identifica os seus processos principais e está comprometida
-          em melhorá-los continuamente através das seguintes áreas:
-        </p>
-        <ul class="list-inside list-disc space-y-2">
-          <li>
-            Definição de objetivos e monitorização e controlo de resultados
-          </li>
-          <li>Responsabilidades e definição de recursos</li>
-          <li>Identificação, avaliação e mitigação de riscos</li>
-          <li>Defining opportunities</li>
-        </ul>
-      </div>
-    </section>
   </main>
 </MainLayout>

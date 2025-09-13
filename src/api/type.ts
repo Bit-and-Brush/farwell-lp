@@ -244,3 +244,8 @@ interface Brand {
   logo: string;
   brandName: string;
 }
+
+export interface GetQualityPolicyPageDataResponse {
+  header: HeaderData;
+  qualityPolicyContent: string;
+}
