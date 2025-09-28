@@ -64,6 +64,7 @@ interface ContactData {
 export interface HeaderData {
   title: string;
   description: string;
+  image?: string;
 }
 
 interface FieldsWithBulletPointsData {
