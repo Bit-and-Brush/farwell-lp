@@ -13,6 +13,7 @@ const {
   image: imageUrl,
   title,
   catalogUrl: catalogUrl,
+  imageList,
 } = Astro.props;
 ---
 
@@ -33,6 +34,25 @@ const {
           target="_blank">Ver Catálogo</ButtonLink
         >
       </div>
+      {
+        imageList && imageList.length > 0 && (
+          <ul class="mt-8 flex flex-wrap justify-between gap-4">
+            {imageList.map(({ image, label }) => (
+              <li class="flex flex-col items-center justify-center gap-1">
+                <Image
+                  width={72}
+                  height={72}
+                  alt={label}
+                  src={image}
+                  class="shadow-primary/60 bg-background rounded-full object-cover shadow-lg"
+                  loading="lazy"
+                />
+                <p class="text-sm">{label}</p>
+              </li>
+            ))}
+          </ul>
+        )
+      }
     </div>
     {
       imageUrl && (

@@ -11,6 +11,10 @@ export interface HeroData {
   description: string;
   image: string;
   keyValue: KeyValueData[];
+  imageList: {
+    label: string;
+    image: string;
+  }[];
 }
 
 interface KeyValueData {
