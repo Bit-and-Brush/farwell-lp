@@ -5,7 +5,6 @@ import PageHero from "@/components/common/page-hero.astro";
 import KPISection from "@/components/sections/about/kpi-section.astro";
 import MissionAndVisionSection from "@/components/sections/about/mission-and-vision-section.astro";
 import QualityAssuranceSection from "@/components/sections/about/quality-assurance-section.astro";
-import WhyUsSection from "@/components/sections/about/why-us-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
 const [aboutPageData, headerData, footerData] =
@@ -32,21 +31,6 @@ const { header, principles, whySection, qualityAssurance } = aboutPageData;
       vision={principles.vision}
       values={principles.values}
     />
-    {
-      whySection && (
-        <WhyUsSection
-          title={whySection.title}
-          keyPoints={whySection.services.map(
-            ({ description, icon, title }) => ({
-              description,
-              title,
-              iconUrl: icon,
-            })
-          )}
-          description={whySection.description}
-        />
-      )
-    }
     <QualityAssuranceSection
       title={qualityAssurance.title}
       description={qualityAssurance.description}

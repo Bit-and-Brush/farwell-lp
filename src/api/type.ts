@@ -149,13 +149,6 @@ export interface GetAboutPageDataResponse {
 }
 
 interface WhySectionData {
-  title: string;
-  description: string;
-  services: {
-    icon: string;
-    title: string;
-    description: string;
-  }[];
   keyValues: {
     icon: string;
     title: string;
