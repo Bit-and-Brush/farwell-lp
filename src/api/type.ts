@@ -194,6 +194,10 @@ export interface GetDiagnosticsPageDataResponse {
     title: string;
     subtitle: string;
     descripiton: string;
+    clinicLogos: {
+      label: string;
+      logo: string;
+    }[];
   };
   brandsAndProducts: {
     title: string;
