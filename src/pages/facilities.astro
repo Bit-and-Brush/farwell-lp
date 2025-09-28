@@ -4,6 +4,7 @@ import type { GetFacilitiesPageDataResponse } from "@/api/type";
 import PageHero from "@/components/common/page-hero.astro";
 import FeaturesSection from "@/components/sections/facilities/features-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
+import { Image } from "astro:assets";
 
 const [facilitiesData, headerData, footerData] =
   await getPageDataWithLayoutData<GetFacilitiesPageDataResponse>("facilities");
@@ -24,6 +25,21 @@ const { facilitiesSection, header } = facilitiesData;
 >
   <main>
     <PageHero title={header.title} subtitle={header.description} />
+    <div class="container mt-10">
+      {
+        header.image && (
+          <Image
+            src={header.image}
+            alt={header.title}
+            width={854}
+            height={480}
+            loading="eager"
+            fetchpriority="high"
+            class="mx-auto max-h-[480px] max-w-[854px] rounded-xl object-cover object-center"
+          />
+        )
+      }
+    </div>
     <FeaturesSection facilities={facilitiesSection.facilities ?? []} />
     {
       facilitiesSection.capabilities &&

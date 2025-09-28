@@ -3,8 +3,7 @@ export const ROUTES = [
   {
     text: "Apresentação",
     children: [
-      { text: "Quem Somos", href: "/about" },
-      { text: "Missão, Visão e Valores", href: "/about#mission" },
+      { text: "Missão, Visão e Valores", href: "/about" },
       { text: "Politica da Qualidade", href: "/quality-policy" },
       { text: "A Nossa Equipa", href: "/team" },
       { text: "Instalações", href: "/facilities" },

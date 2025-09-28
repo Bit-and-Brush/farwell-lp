@@ -43,10 +43,7 @@ const {
     <title>Farwell - {extendedTitle}</title>
   </head>
   <body>
-    <Header
-      catalogUrl={headerLinks?.catalog}
-      clientAreaUrl={headerLinks?.clientArea}
-    />
+    <Header clientAreaUrl={headerLinks?.clientArea} />
     <slot />
     <Footer
       contacts={footer?.contacts ?? []}

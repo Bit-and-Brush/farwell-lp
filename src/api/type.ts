@@ -11,6 +11,10 @@ export interface HeroData {
   description: string;
   image: string;
   keyValue: KeyValueData[];
+  imageList: {
+    label: string;
+    image: string;
+  }[];
 }
 
 interface KeyValueData {
@@ -60,6 +64,7 @@ interface ContactData {
 export interface HeaderData {
   title: string;
   description: string;
+  image?: string;
 }
 
 interface FieldsWithBulletPointsData {
@@ -86,7 +91,6 @@ export interface GetDistributionPageDataResponse {
   header: HeaderData;
   ourDistributionServices: OurDistributionServicesData;
   areaCoverage: AreaCoverageData;
-  qualityAndComplianceStandards: QualityAndComplianceStandardsData;
   whyChooseOurServices: WhyChooseOurServicesData;
   brands: Brand[];
 }
@@ -149,13 +153,6 @@ export interface GetAboutPageDataResponse {
 }
 
 interface WhySectionData {
-  title: string;
-  description: string;
-  services: {
-    icon: string;
-    title: string;
-    description: string;
-  }[];
   keyValues: {
     icon: string;
     title: string;
@@ -202,6 +199,10 @@ export interface GetDiagnosticsPageDataResponse {
     title: string;
     subtitle: string;
     descripiton: string;
+    clinicLogos: {
+      label: string;
+      logo: string;
+    }[];
   };
   brandsAndProducts: {
     title: string;

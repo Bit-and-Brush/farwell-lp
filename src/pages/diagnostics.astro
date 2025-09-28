@@ -5,6 +5,7 @@ import PageHero from "@/components/common/page-hero.astro";
 import ProsedContent from "@/components/common/prosed-content.astro";
 import MainSection from "@/components/sections/diagnostics/main-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
+import { Image } from "astro:assets";
 
 const [diagnosticsData, headerData, footerData] =
   await getPageDataWithLayoutData<GetDiagnosticsPageDataResponse>(
@@ -42,6 +43,27 @@ const { clientSection, header, brandsAndProducts, diagnostics } =
           {clientSection.subtitle}
         </p>
         <ProsedContent content={clientSection.descripiton} />
+
+        {
+          clientSection.clinicLogos && clientSection.clinicLogos.length > 0 && (
+            <ul class="flex flex-wrap items-center justify-center gap-12">
+              {clientSection.clinicLogos.map(({ label, logo }) => (
+                <li class="flex items-center justify-center gap-4">
+                  <Image
+                    loading="lazy"
+                    class="object-cover"
+                    src={logo}
+                    alt={label}
+                    width={100}
+                    height={100}
+                    title={label}
+                    aria-label={label}
+                  />
+                </li>
+              ))}
+            </ul>
+          )
+        }
       </div>
     </section>
   </main>

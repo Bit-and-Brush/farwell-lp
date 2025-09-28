@@ -5,7 +5,6 @@ import BrandsSection from "@/components/common/brands-section.astro";
 import PageHero from "@/components/common/page-hero.astro";
 import CoverageSection from "@/components/sections/distribution/coverage-section.astro";
 import DistributionServicesSection from "@/components/sections/distribution/distribution-services-section.astro";
-import QualityStandards from "@/components/sections/distribution/quality-standards.astro";
 import WhyOurServicesSection from "@/components/sections/distribution/why-our-services-section.astro";
 import MainLayout from "@/layouts/main-layout.astro";
 
@@ -19,7 +18,6 @@ const {
   areaCoverage,
   header,
   ourDistributionServices,
-  qualityAndComplianceStandards,
   whyChooseOurServices,
   brands,
 } = distributionData;
@@ -63,21 +61,6 @@ const {
           description={areaCoverage.description}
           areas={areaCoverage.coverageArea.map(({ areaName }) => areaName)}
           stats={areaCoverage.distributionStats}
-        />
-      )
-    }
-    {
-      qualityAndComplianceStandards && (
-        <QualityStandards
-          title={qualityAndComplianceStandards.title}
-          description={qualityAndComplianceStandards.description}
-          keyPoints={qualityAndComplianceStandards.keyValues.map(
-            ({ description, title, icon }) => ({
-              description,
-              title,
-              iconUrl: icon,
-            })
-          )}
         />
       )
     }
