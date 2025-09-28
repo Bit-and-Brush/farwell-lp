@@ -13,7 +13,7 @@ const { description, ourServices, title } = Astro.props;
     <SectionHeader title={title} description={description} />
     {
       ourServices && (
-        <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <ul class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {ourServices.map(
             ({ fields: { description, icon: iconUrl }, title }) => (
               <CardListItem
