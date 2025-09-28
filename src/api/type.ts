@@ -86,7 +86,6 @@ export interface GetDistributionPageDataResponse {
   header: HeaderData;
   ourDistributionServices: OurDistributionServicesData;
   areaCoverage: AreaCoverageData;
-  qualityAndComplianceStandards: QualityAndComplianceStandardsData;
   whyChooseOurServices: WhyChooseOurServicesData;
   brands: Brand[];
 }
