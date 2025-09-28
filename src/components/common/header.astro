@@ -1,5 +1,6 @@
 ---
-import { HeaderLogoSVG } from "@/assets";
+import { headerLogoImage } from "@/assets";
+import { Image } from "astro:assets";
 import { UserIcon } from "lucide-react";
 import DesktopNavMenu from "../interactive/desktop-nav-menu";
 import MobileNavMenu from "../interactive/mobile-nav-menu";
@@ -17,7 +18,14 @@ const { clientAreaUrl } = Astro.props;
 >
   <div class="container flex items-center justify-between py-4">
     <a href="/" title="Página Inicial" aria-label="Página Inicial">
-      <HeaderLogoSVG height={50} />
+      <Image
+        src={headerLogoImage}
+        alt="Farwell, Sociedade Farmacêutica Logo"
+        width={200}
+        height={50}
+        quality={100}
+        priority
+      />
     </a>
     <DesktopNavMenu client:visible pathname={Astro.url.pathname} />
     <div>
