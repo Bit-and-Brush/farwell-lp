@@ -36,6 +36,13 @@ const {
   <main>
     <PageHero title={header.title} subtitle={header.description} />
     {
+      brands && brands.length > 0 && (
+        <div class="container max-w-6xl">
+          <BrandsSection brands={brands} />
+        </div>
+      )
+    }
+    {
       ourDistributionServices && (
         <DistributionServicesSection
           title={ourDistributionServices.title}
@@ -77,13 +84,6 @@ const {
             })
           )}
         />
-      )
-    }
-    {
-      brands && brands.length > 0 && (
-        <div class="container max-w-6xl">
-          <BrandsSection brands={brands} />
-        </div>
       )
     }
   </main>
